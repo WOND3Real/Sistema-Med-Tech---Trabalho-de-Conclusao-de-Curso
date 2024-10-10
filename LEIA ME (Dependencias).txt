@@ -1,0 +1,9 @@
+Adicione esses comandos ao diretório do trabalho para instalar as dependências necessárias:
+
+
+
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+dotnet workload install maui
