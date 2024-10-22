@@ -1,6 +1,5 @@
 using SMT.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 public class PacienteService
 {
@@ -12,48 +11,84 @@ public class PacienteService
     }
 
     // Método para adicionar um paciente
-    public void AdicionarPaciente(Paciente paciente)
+    public async Task<bool> AdicionarPaciente(Paciente paciente)
     {
-        _context.Pacientes.Add(paciente);
-        _context.SaveChanges();
+        // Verifica se o paciente já existe
+        if (await _context.Pacientes.AnyAsync(p => p.CpfPaci == paciente.CpfPaci))
+        {
+            return false; // O paciente já existe
+        }
+
+        await _context.Pacientes.AddAsync(paciente);
+        await _context.SaveChangesAsync();
+        return true; // Paciente adicionado com sucesso
     }
 
-    // Método para atualizar um paciente
-    public void AtualizarPaciente(Paciente paciente)
-    {
-        var pacienteExistente = _context.Pacientes
-            .FirstOrDefault(p => p.Cpfpaci == paciente.Cpfpaci);  // Usando o CPF do paciente recebido
 
-        if (pacienteExistente != null)
+    // Método para atualizar um paciente
+    public async Task<bool> AtualizarPaciente(Paciente paciente)
+    {
+        try
         {
-            pacienteExistente.Nomepaci = paciente.Nomepaci;
-            pacienteExistente.Sobrenomepaci = paciente.Sobrenomepaci;
-            pacienteExistente.Nascimentopaci = paciente.Nascimentopaci;
-            pacienteExistente.genero = paciente.genero;
-            pacienteExistente.Emailpaci = paciente.Emailpaci;
-            pacienteExistente.Telefonepaci = paciente.Telefonepaci;
-            pacienteExistente.Senhapaci = paciente.Senhapaci;
-            _context.SaveChanges();
+            var pacienteExistente = await _context.Pacientes
+                .FirstOrDefaultAsync(p => p.CpfPaci == paciente.CpfPaci);
+
+            if (pacienteExistente != null)
+            {
+                pacienteExistente.NomePaci = paciente.NomePaci;
+                pacienteExistente.SobrenomePaci = paciente.SobrenomePaci;
+                pacienteExistente.NascimentoPaci = paciente.NascimentoPaci;
+                pacienteExistente.generoPaci = paciente.generoPaci;
+                pacienteExistente.EmailPaci = paciente.EmailPaci;
+                pacienteExistente.TelefonePaci = paciente.TelefonePaci;
+                pacienteExistente.SenhaPaci = paciente.SenhaPaci;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // Log do erro (ex.Message) ou outra ação apropriada
+            return false;
         }
     }
 
     // Método para buscar um paciente
-    public Paciente? BuscarPaciente(string cpf) // Alterando para Paciente?
+    public async Task<Paciente?> BuscarPaciente(string cpf)
     {
-        return _context.Pacientes.FirstOrDefault(p => p.Cpfpaci == cpf);
-    }
-
-    // Método para deletar um paciente
-    public void DeletarPaciente(string cpf)
-    {
-        var pacienteExistente = _context.Pacientes
-            .FirstOrDefault(p => p.Cpfpaci == cpf);
-
-        if (pacienteExistente != null)
+        try
         {
-            _context.Pacientes.Remove(pacienteExistente);
-            _context.SaveChanges();
+            return await _context.Pacientes.FirstOrDefaultAsync(p => p.CpfPaci == cpf);
+        }
+        catch (Exception ex)
+        {
+            // Log do erro (ex.Message) ou outra ação apropriada
+            return null;
         }
     }
 
+    // Método para deletar um paciente
+    public async Task<bool> DeletarPaciente(string cpf)
+    {
+        try
+        {
+            var pacienteExistente = await _context.Pacientes
+                .FirstOrDefaultAsync(p => p.CpfPaci == cpf);
+
+            if (pacienteExistente != null)
+            {
+                _context.Pacientes.Remove(pacienteExistente);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // Log do erro (ex.Message) ou outra ação apropriada
+            return false;
+        }
+    }
 }

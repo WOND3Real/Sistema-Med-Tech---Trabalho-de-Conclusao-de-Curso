@@ -7,3 +7,12 @@ dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
 dotnet add package Microsoft.EntityFrameworkCore.Design
 
 dotnet workload install maui
+
+
+
+Extensões do VS-code:
+.NET Install tool
+C#
+C# Dev Kit
+Dev Containers
+Docker

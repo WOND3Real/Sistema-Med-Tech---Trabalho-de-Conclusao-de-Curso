@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
 namespace SMT.Models;
 
 public partial class ContextoBD : DbContext
@@ -9,13 +8,12 @@ public partial class ContextoBD : DbContext
     public ContextoBD()
     {
     }
-
     public ContextoBD(DbContextOptions<ContextoBD> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<Administrador> Administradors { get; set; }
+    public virtual DbSet<Administrador> Administradores { get; set; }
 
     public virtual DbSet<Atendente> Atendentes { get; set; }
 
@@ -29,8 +27,11 @@ public partial class ContextoBD : DbContext
 
     public virtual DbSet<Unidade> Unidades { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=smt;Username=postgres;Password=1111");
-
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql("DefaultConnection");
+        base.OnConfiguring(optionsBuilder);
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -232,32 +233,44 @@ public partial class ContextoBD : DbContext
                     });
         });
 
-        modelBuilder.Entity<Paciente>(entity =>
+        modelBuilder.Entity<Paciente>(entity => 
         {
-            entity.HasKey(e => e.Cpfpaci).HasName("paciente_pkey");
+            entity.HasKey(e => e.CpfPaci).HasName("paciente_pkey");
 
             entity.ToTable("paciente");
 
-            entity.Property(e => e.Cpfpaci)
+            entity.Property(e => e.CpfPaci)
                 .HasMaxLength(14)
                 .HasColumnName("cpfpaci");
-            entity.Property(e => e.Emailpaci)
-                .HasMaxLength(45)
-                .HasColumnName("emailpaci");
-            entity.Property(e => e.Nascimentopaci).HasColumnName("nascimentopaci");
-            entity.Property(e => e.Nomepaci)
+
+            entity.Property(e => e.NomePaci)
                 .HasMaxLength(45)
                 .HasColumnName("nomepaci");
-            entity.Property(e => e.Senhapaci)
-                .HasMaxLength(20)
-                .HasColumnName("senhapaci");
-            entity.Property(e => e.Sobrenomepaci)
+
+            entity.Property(e => e.SobrenomePaci)
                 .HasMaxLength(45)
                 .HasColumnName("sobrenomepaci");
-            entity.Property(e => e.Telefonepaci)
+
+            entity.Property(e => e.NascimentoPaci)
+                .HasColumnName("nascimentopaci");
+
+            entity.Property(e => e.generoPaci)
+                .HasConversion<string>()  // Converte o enum para string no banco de dados
+                .HasColumnName("genero");
+
+            entity.Property(e => e.EmailPaci)
+                .HasMaxLength(45)
+                .HasColumnName("emailpaci");
+
+            entity.Property(e => e.TelefonePaci)
                 .HasMaxLength(14)
                 .HasColumnName("telefonepaci");
+
+            entity.Property(e => e.SenhaPaci)
+                .HasMaxLength(20)
+                .HasColumnName("senhapaci");
         });
+
 
         modelBuilder.Entity<Unidade>(entity =>
         {

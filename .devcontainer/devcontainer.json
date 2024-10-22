@@ -1,0 +1,19 @@
+{
+    "name": "MyApp DevContainer",
+    "dockerComposeFile": ["../docker-compose.yml"],
+    "service": "backend",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-dotnettools.csharp"
+        ],
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "bash"
+        }
+      }
+    },
+    "remoteUser": "vscode",
+    "postCreateCommand": "dotnet restore"
+  }
+  

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  db:
+  image: postgres:15  # Use a versão desejada do PostgreSQL
+  restart: always  # Reinicia o contêiner automaticamente
+  environment:
+    - POSTGRES_DB=smt  # Nome do banco de dados a ser criado
+    - POSTGRES_USER=postgres  # Nome do usuário
+    - POSTGRES_PASSWORD=1111  # Senha do usuário
+  ports:
+    - "5432:5432"  # Mapeando a porta do host para o contêiner
+  volumes:
+    - db_data:/var/lib/postgresql/data  # Persistência dos dados do banco de dados
+
+  smt_service:
+    build:
+      context: .  # O diretório onde o Dockerfile do SMT está localizado
+      dockerfile: SMT/Dockerfile  # Caminho para o Dockerfile do SMT
+    ports:
+      - "5218:5218"  # Mapeando a porta do host para o contêiner
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=smt;Username=postgres;Password=1111  # Conexão ao banco de dados
+    depends_on:
+      - db  # Espera o serviço de banco de dados estar disponível
+
+  smt_maui_service:
+    build:
+      context: .  # O diretório onde o Dockerfile do SmtMAUI está localizado
+      dockerfile: SmtMAUI/Dockerfile  # Caminho para o Dockerfile do SmtMAUI
+    ports:
+      - "5000:5000"  # Substitua pela porta que o SmtMAUI deve usar, se necessário
+    depends_on:
+      - db  # Espera o serviço de banco de dados estar disponível
+
+volumes:
+  db_data:  # Volume para persistir os dados do banco de dados
