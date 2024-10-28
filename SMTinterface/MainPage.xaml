@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SMTinterface.MainPage"
+             BackgroundColor = "#F47636">
+
+             <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+        <!-- Logo -->
+        <Image Source="logo.png" HeightRequest="100" WidthRequest="100" />
+
+        <!-- Login Section -->
+        <Frame Padding="20" CornerRadius="10" BackgroundColor="White" WidthRequest="300">
+            <StackLayout>
+                <Label Text="Login" TextColor="purple" FontSize="Large" HorizontalOptions="Center" />
+                
+                <!-- Email Entry -->
+                <Entry Placeholder="Digite seu email..."/>
+
+                <!-- Senha Entry -->
+                <Entry Placeholder="Digite sua senha..." IsPassword="True" />
+
+                <!-- Botão de Acesso -->
+                <Button x:Name="CounterBtn" Text="Acessar" 
+                    BackgroundColor="#007AFF" 
+                    TextColor="White" 
+                    
+                    Clicked="OnNavigateButtonClicked"
+                     
+                    />
+            </StackLayout>
+        </Frame>
+
+        <!-- Opções de Login com outros serviços -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Image Source="google.png" HeightRequest="30" />
+            <Image Source="govbr.png" HeightRequest="30" />
+            <Image Source="apple.png" HeightRequest="30" />
+        </StackLayout>
+
+        <!-- Link de Registro -->
+        <Label Text="Ainda não tem cadastro? Registrar!" FontSize="Small" TextColor="White" HorizontalOptions="Center" />
+
+    </StackLayout>
+
+    
+
+</ContentPage>
