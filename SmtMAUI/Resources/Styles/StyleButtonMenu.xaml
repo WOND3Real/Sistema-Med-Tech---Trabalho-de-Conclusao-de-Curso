@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="RadioButton" 
+           x:Key="MenuButtonTheme">
+        <!-- Define o Template do controle -->
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Background="{TemplateBinding Background}" Padding="10">
+                        
+                        <!-- Exibe o texto do RadioButton -->
+                        <Label Text="{TemplateBinding Content}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="CenterAndExpand"
+                               Margin="10,0,10,0"
+                               TextColor="Black" />
+                        
+                        <!-- Borda inferior (sublinhado) -->
+                        <BoxView x:Name="underline"
+                                 HeightRequest="2" 
+                                 BackgroundColor="Black" 
+                                 VerticalOptions="End"
+                                 HorizontalOptions="FillAndExpand" 
+                                 IsVisible="False"/>  
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!-- Define o fundo padrão do RadioButton -->
+        <Setter Property="Background" Value="Transparent"/>
+
+        <!-- Define a cor de fundo e a visibilidade do sublinhado quando o RadioButton estiver selecionado -->
+        <Style.Triggers>
+            <Trigger TargetType="RadioButton" Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="#22202F"/>
+                <Setter Property="TextColor" Value="White"/>
+                
+                <!-- Torna o sublinhado visível quando o botão é selecionado -->
+                <Setter TargetName="underline" Property="IsVisible" Value="True"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
