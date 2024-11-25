@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmtMAUI.PainelADM"
+             Background="Transparent"
+             >
+           
+
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+
+        <Grid Grid.Row="0"  Padding="10"> 
+            <Grid.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <!-- Cor inicial -->
+            <GradientStop Color="#FFA234" Offset="0.0" />
+            <!-- Cor final -->
+            <GradientStop Color="#5F008C" Offset="1.0" />
+        </LinearGradientBrush>
+            </Grid.Background>
+
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+        
+            <RadioButton
+                Grid.Column="0"
+                Content="Consultas"
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                />
+
+            <RadioButton
+                Grid.Column="1"    
+                Content="Painel do Medico "
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                />
+
+                <Image
+                    Grid.Column="2"
+                    Source="logo.png"
+                    HeightRequest="80"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                
+                    />
+                    
+            <RadioButton
+                Grid.Column="3"
+                Content="Contribuintes"
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                CheckedChanged="OnLoginClicked"
+                />
+
+            <RadioButton
+                Grid.Column="4"
+                Content="Suporte"
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                />
+        </Grid>   
+
+        <Grid Grid.Row="1" Padding="20"  ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10" HorizontalOptions="Start">
+
+            
+            
+                <Frame Background="#FFA234"
+                       WidthRequest="175" 
+                       HeightRequest="100"
+                       Grid.Row="0"
+                       Grid.Column="0"
+
+                    >
+                    <StackLayout>
+                        <Label Text="217" FontSize="24" TextColor="White"/>
+                        <Label Text="Consultas Cadastradas" FontSize="12" TextColor="White"/>
+                    </StackLayout>
+
+                </Frame>
+                <Frame Background="#8B35B5"
+                       WidthRequest="175" 
+                       HeightRequest="100"
+                       Grid.Row="0"
+                       Grid.Column="1"
+
+                    >
+                    <StackLayout>
+                        <Label Text="20" FontSize="24" TextColor="White"/>
+                        <Label Text="Contribuintes Cadastrados" FontSize="12" TextColor="White"/>
+                    </StackLayout>
+
+                </Frame>
+                <Frame Background="#49C31E"
+                       WidthRequest="175" 
+                       HeightRequest="100"
+                       Grid.Row="1"
+                       Grid.Column="0"
+
+                    >
+                    <StackLayout>
+                        <Label Text="150" FontSize="24" TextColor="White"/>
+                        <Label Text="Consultas Concluidas" FontSize="12" TextColor="White"/>
+                    </StackLayout>
+
+                </Frame>
+                <Frame Background="#0A5C8A"
+                       WidthRequest="175" 
+                       HeightRequest="100"
+                       Grid.Row="1"
+                       Grid.Column="1"
+
+                    >
+                    <StackLayout>
+                        <Label Text="0" FontSize="24" TextColor="White"/>
+                        <Label Text="Consultas Remarcadas" FontSize="12" TextColor="White"/>
+                    </StackLayout>
+                </Frame>
+
+                    <Frame Background="#D30B0B"
+                       WidthRequest="175" 
+                       HeightRequest="100"
+                       Grid.Row="2"
+                       Grid.Column="0"
+
+                    >
+                    <StackLayout>
+                        <Label Text="217" FontSize="24" TextColor="White"/>
+                        <Label Text="Consultas Canceladas" FontSize="12" TextColor="White"/>
+                    </StackLayout>
+
+                </Frame>
+                
+
+               
+        </Grid>
+
+
+        <Grid Grid.Row="2" Padding="20"  ColumnDefinitions="Auto" ColumnSpacing="10" RowSpacing="10" >
+
+         <!-- Cartão de Satisfação do Cliente -->
+
+          <Frame BackgroundColor="#424242" 
+                       CornerRadius="8" 
+                       Padding="15" 
+                       Grid.Row="3" 
+                       Grid.Column="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End"
+                       WidthRequest="400" 
+                       HeightRequest="150"
+                       >
+                    <StackLayout>
+                        <Label Text="79%" FontSize="40" TextColor="Orange" VerticalOptions="Center" />
+                        <StackLayout>
+                            <Label Text="Satisfação do Cliente" FontSize="12" TextColor="White" />
+                            <Label Text="com os atendimentos" FontSize="12" TextColor="White" />
+                        </StackLayout>
+                    </StackLayout>
+                    
+                </Frame>
+        </Grid>
+
+               
+
+
+
+        
+            
+        
+    </Grid>             
+             
+             
+
+
+
+
+</ContentPage>

@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace ModernDesign.Core
+namespace SmtMAUI
 {
     class RelayCommand : ICommand
     {

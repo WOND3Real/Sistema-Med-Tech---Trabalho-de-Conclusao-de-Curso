@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 
-namespace ModernDesign.Core
+namespace SmtMAUI
 {
     class ObservableObject : INotifyPropertyChanged{
 

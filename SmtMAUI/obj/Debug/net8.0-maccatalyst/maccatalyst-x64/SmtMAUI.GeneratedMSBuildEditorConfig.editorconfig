@@ -28,14 +28,20 @@ build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/MainPage.xaml]
+[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/CadastroContribuintes.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.CadastroContribuintes.xaml
+build_metadata.AdditionalFiles.TargetPath = CadastroContribuintes.xaml
+build_metadata.AdditionalFiles.RelativePath = CadastroContribuintes.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/Resources/Styles/StyleButtonMenu.xaml]
+[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/Login.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Resources.Styles.StyleButtonMenu.xaml
-build_metadata.AdditionalFiles.TargetPath = Resources\Styles\StyleButtonMenu.xaml
-build_metadata.AdditionalFiles.RelativePath = Resources\Styles\StyleButtonMenu.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Login.xaml
+build_metadata.AdditionalFiles.TargetPath = Login.xaml
+build_metadata.AdditionalFiles.RelativePath = Login.xaml
+
+[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/PainelADM.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.PainelADM.xaml
+build_metadata.AdditionalFiles.TargetPath = PainelADM.xaml
+build_metadata.AdditionalFiles.RelativePath = PainelADM.xaml

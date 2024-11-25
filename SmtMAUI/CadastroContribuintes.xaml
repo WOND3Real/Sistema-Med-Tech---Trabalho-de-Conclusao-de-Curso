@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmtMAUI.CadastroContribuintes"
+             >
+
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Padding="10">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#FFA234" Offset="0.0"/>
+                    <GradientStop Color="#5F008C" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+              <RadioButton
+                Grid.Column="0"
+                Content="Consultas"
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                />
+
+            <RadioButton
+                Grid.Column="1"    
+                Content="Painel do Medico "
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                />
+
+                <Image
+                    Grid.Column="2"
+                    Source="logo.png"
+                    HeightRequest="80"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                
+                    />
+                    
+            <RadioButton
+                Grid.Column="3"
+                Content="Contribuintes"
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                />
+
+            <RadioButton
+                Grid.Column="4"
+                Content="Suporte"
+                TextColor="white"
+                FontSize="14"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                />
+
+
+        </Grid>
+
+
+    </Grid>
+
+
+    
+
+    
+
+    
+
+
+
+</ContentPage>
