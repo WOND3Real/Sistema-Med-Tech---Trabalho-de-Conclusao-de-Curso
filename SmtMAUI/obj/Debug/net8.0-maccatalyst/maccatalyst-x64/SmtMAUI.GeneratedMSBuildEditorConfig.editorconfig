@@ -34,6 +34,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.CadastroContribuin
 build_metadata.AdditionalFiles.TargetPath = CadastroContribuintes.xaml
 build_metadata.AdditionalFiles.RelativePath = CadastroContribuintes.xaml
 
+[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/ListaConsulta.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.ListaConsulta.xaml
+build_metadata.AdditionalFiles.TargetPath = ListaConsulta.xaml
+build_metadata.AdditionalFiles.RelativePath = ListaConsulta.xaml
+
 [C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/Login.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Login.xaml

@@ -11,13 +11,22 @@ public partial class PainelADM : ContentPage
 	}
 
 	 // Evento de mudança de estado do RadioButton
-        private async void OnLoginClicked(object sender, CheckedChangedEventArgs e)
+        private async void OnNavigateToCadastroContribuintesCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             // Verifica se o RadioButton foi marcado
             if (e.Value)
             {
                 // Navegar para a página CadastroContribuintes
                 await Navigation.PushAsync(new CadastroContribuintes());
+            }
+        }
+        private async void OnNavigateToListaConsultasCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            // Verifica se o RadioButton foi marcado
+            if (e.Value)
+            {
+                // Navegar para a página CadastroContribuintes
+                await Navigation.PushAsync(new ListaConsulta());
             }
         }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SmtMAUI.CadastroContribuintes"
+             x:Class="SmtMAUI.ListaConsulta"
              >
 
     <Grid Background="White">
@@ -86,12 +86,16 @@
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Nome" Grid.Column="0" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Ocupação" Grid.Column="1" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Identificador" Grid.Column="2" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Consultório/Guichê" Grid.Column="3" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Especialidade (Médico)" Grid.Column="4" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="Codigo de Culsulta" Grid.Column="0" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="Data" Grid.Column="1" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="Hora" Grid.Column="2" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="CPF do Paciente" Grid.Column="3" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="Especialidade" Grid.Column="4" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="Consutorio" Grid.Column="5" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="Status" Grid.Column="6" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
                 </Grid>
             </ListView.Header>
 
