@@ -26,7 +26,7 @@
                    VerticalOptions="Center">
                 <VerticalStackLayout Spacing="15">
                     <Label Text="Login"
-                           FontSize="24"
+                           FontSize="35"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            TextColor="#4A0072" />
@@ -57,18 +57,28 @@
                         <Button Text="Atendente"
                                 BackgroundColor="#4A0072"
                                 TextColor="White"
-                                CornerRadius="25"
-                                WidthRequest="80" />
+                                CornerRadius="40"
+                                WidthRequest="80"
+                                HeightRequest="80"
+                                 />
                         <Button Text="ADM"
                                 BackgroundColor="#4A0072"
                                 TextColor="White"
-                                CornerRadius="25"
-                                WidthRequest="80" />
+                                CornerRadius="40"
+                                WidthRequest="80" 
+                                HeightRequest="80"
+
+                                
+                                />
                         <Button Text="Médico"
                                 BackgroundColor="#4A0072"
                                 TextColor="White"
-                                CornerRadius="25"
-                                WidthRequest="80" />
+                                CornerRadius="40"
+                                WidthRequest="80" 
+                                HeightRequest="80"
+
+                                
+                                />
                     </HorizontalStackLayout>
                     
                     <!-- Link Esqueci a Senha -->

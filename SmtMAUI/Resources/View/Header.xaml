@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmtMAUI.Controls.Header"
+             
+             >
+
+
+    
+    <Grid Padding="10">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#FFA234" Offset="0.0" />
+                <GradientStop Color="#5F008C" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button
+            Grid.Column="0"
+            Text="Consultas"
+            TextColor="white"
+            FontSize="30"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Clicked="OnNavigateToListaConsultasClicked" 
+            />
+
+            
+
+        <Button
+            Grid.Column="1"    
+            Text="Painel Médico"
+            TextColor="white"
+            FontSize="30"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Clicked="OnNavigateToPainelMedicoClicked"
+             />
+
+        <ImageButton
+            Background="White"
+            Grid.Column="2"
+            Source="logo.png"
+            HeightRequest="80"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" 
+            Clicked="OnNavigateToPainelADMClicked"
+            />
+
+        <Button
+            Grid.Column="3"
+            Text="Contribuintes"
+            TextColor="white"
+            FontSize="30"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Clicked="OnNavigateToCadastroContribuintesClicked" />
+
+        <Button
+            Grid.Column="4"
+            Text="Suporte"
+            TextColor="white"
+            FontSize="30"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center" />
+    </Grid>
+</ContentView>

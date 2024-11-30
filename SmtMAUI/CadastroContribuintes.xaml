@@ -1,148 +1,106 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SmtMAUI.CadastroContribuintes"
-             >
+             xmlns:controls="clr-namespace:SmtMAUI.Controls"
+             x:Class="SmtMAUI.CadastroContribuintes">
 
-    <Grid Background="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="HeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Purple"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
 
+            <Style x:Key="CellLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Background="#ECECEC">
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition/>
+            <RowDefinition Height="75"/> <!-- Header -->
+            <RowDefinition Height="*"/> <!-- Tabela -->
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Padding="10">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#FFA234" Offset="0.0"/>
-                    <GradientStop Color="#5F008C" Offset="1.0"/>
-                </LinearGradientBrush>
-            </Grid.Background>
+        <!-- Cabeçalho -->
+        <controls:Header Grid.Row="0" />
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <!-- Tabela com Frame de Fundo -->
+        <Frame Grid.Row="1"
+               CornerRadius="15"
+               BorderColor="#FFC0A8A8"
+               BackgroundColor="#DED8E1"
+               Padding="10"
+               HasShadow="True"
+               Margin="10">
 
+            <!-- Layout para Tabela e Botão -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" /> <!-- Tabela -->
+                    <RowDefinition Height="50" /> 
+                </Grid.RowDefinitions>
 
-              <RadioButton
-                Grid.Column="0"
-                Content="Consultas"
-                TextColor="white"
-                FontSize="14"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"
-                />
+                <!-- Tabela -->
+                <CollectionView x:Name="ContribuintesCollectionView"
+                                Grid.Row="0"
+                                VerticalOptions="FillAndExpand">
 
-            <RadioButton
-                Grid.Column="1"    
-                Content="Painel do Medico "
-                TextColor="white"
-                FontSize="14"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"
-                />
+                    <CollectionView.Header>
+                        <Grid ColumnSpacing="1" BackgroundColor="#FFFFFF" Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Nome" Style="{StaticResource HeaderLabelStyle}" Grid.Column="0"/>
+                            <Label Text="Ocupação" Style="{StaticResource HeaderLabelStyle}" Grid.Column="1"/>
+                            <Label Text="Identificador" Style="{StaticResource HeaderLabelStyle}" Grid.Column="2"/>
+                            <Label Text="Consultório/Guichê" Style="{StaticResource HeaderLabelStyle}" Grid.Column="3"/>
+                            <Label Text="Especialidade" Style="{StaticResource HeaderLabelStyle}" Grid.Column="4"/>
+                        </Grid>
+                    </CollectionView.Header>
 
-                <Image
-                    Grid.Column="2"
-                    Source="logo.png"
-                    HeightRequest="80"
-                    HorizontalOptions="Center"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10" Padding="5" Margin="0,3,0,3" HasShadow="True" BackgroundColor="White">
+                                <Grid ColumnSpacing="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Nome}" Style="{StaticResource CellLabelStyle}" Grid.Column="0"/>
+                                    <Label Text="{Binding Ocupacao}" Style="{StaticResource CellLabelStyle}" Grid.Column="1"/>
+                                    <Label Text="{Binding Identificador}" Style="{StaticResource CellLabelStyle}" Grid.Column="2"/>
+                                    <Label Text="{Binding GuicheConsultorio}" Style="{StaticResource CellLabelStyle}" Grid.Column="3"/>
+                                    <Label Text="{Binding Especialidade}" Style="{StaticResource CellLabelStyle}" Grid.Column="4"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Botão no canto inferior direito -->
+                <ImageButton
+                    Grid.Row="1"
+                    Padding="10"
+                    Source="adicionar.png"
+                    HorizontalOptions="End"
                     VerticalOptions="Center"
-                
-                    />
-                    
-            <RadioButton
-                Grid.Column="3"
-                Content="Contribuintes"
-                TextColor="white"
-                FontSize="14"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"
-                />
-
-            <RadioButton
-                Grid.Column="4"
-                Content="Suporte"
-                TextColor="white"
-                FontSize="14"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"
-                />
-
-
-        </Grid>
-
-       <!-- Lista de Contribuintes -->
-        <ListView x:Name="ContribuintesListView" Grid.Row="1" Margin="10">
-            <ListView.Header>
-                <Grid BackgroundColor="#F1F1F1" Padding="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="2*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Nome" Grid.Column="0" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Ocupação" Grid.Column="1" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Identificador" Grid.Column="2" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Consultório/Guichê" Grid.Column="3" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="Especialidade (Médico)" Grid.Column="4" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center" />
-                </Grid>
-            </ListView.Header>
-
-            <!-- Data Template para os itens -->
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10" BackgroundColor="White" Margin="0,0,0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="2*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Nome}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center"/>
-                        <Label Text="{Binding Ocupacao}" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
-                        <Label Text="{Binding Identificador}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center"/>
-                        <Label Text="{Binding GuicheConsultorio}" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
-                        <Label Text="{Binding Especialidade}" Grid.Column="4" VerticalOptions="Center" HorizontalOptions="Center"/>
-                        
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <!-- Botão fixo no canto inferior direito -->
-        <Button Text="+" 
-            FontSize="30" 
-            BackgroundColor="#5E2B91" 
-            TextColor="White"
-            HorizontalOptions="End" 
-            VerticalOptions="End" 
-            Margin="20"
-            Clicked="OnAdicionarContribuinteClicked"
-            >       
-        </Button>
-
-        
-
-
-       
-            
-
-        
-
-
-
+                    HeightRequest="75"
+                    WidthRequest="75"
+                    Clicked="OnAdicionarContribuinteClicked" />
+            </Grid>
+        </Frame>
     </Grid>
-
-    
-
-    
-
 </ContentPage>
