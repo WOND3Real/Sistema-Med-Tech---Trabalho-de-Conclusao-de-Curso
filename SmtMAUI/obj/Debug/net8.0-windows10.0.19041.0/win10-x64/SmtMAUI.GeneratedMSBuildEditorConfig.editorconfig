@@ -61,6 +61,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.PainelMedico.xaml
 build_metadata.AdditionalFiles.TargetPath = PainelMedico.xaml
 build_metadata.AdditionalFiles.RelativePath = PainelMedico.xaml
 
+[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/Perfil.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Perfil.xaml
+build_metadata.AdditionalFiles.TargetPath = Perfil.xaml
+build_metadata.AdditionalFiles.RelativePath = Perfil.xaml
+
 [C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/Resources/View/Header.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Resources.View.Header.xaml

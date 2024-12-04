@@ -44,5 +44,14 @@ namespace SmtMAUI.Controls
             
             
         }
+        private async void OnNavigateToPerfilClicked(object sender, EventArgs e)
+        {            
+            
+                // Navegar para a página PainelADM
+                await Navigation.PushAsync(new Perfil());
+
+            
+            
+        }
     }
 }

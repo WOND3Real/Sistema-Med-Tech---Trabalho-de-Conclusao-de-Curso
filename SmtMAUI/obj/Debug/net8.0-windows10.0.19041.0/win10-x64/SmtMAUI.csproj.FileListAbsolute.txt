@@ -939,3 +939,7 @@ C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\bin\Debug\net8.0-windows10.0.19041.
 C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\satisfacaocliente.scale-100.png
 C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\mano.scale-100.png
 C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\mano.scale-100.png
+C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\perfilicon.scale-100.png
+C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\perfilicon.scale-100.png
+C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\medico.scale-100.png
+C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\medico.scale-100.png

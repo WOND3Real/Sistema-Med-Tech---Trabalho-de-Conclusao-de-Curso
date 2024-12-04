@@ -4,8 +4,6 @@
              x:Class="SmtMAUI.Controls.Header"
              
              >
-
-
     
     <Grid Padding="10">
         <Grid.Background>
@@ -31,6 +29,9 @@
             HorizontalOptions="Center" 
             VerticalOptions="Center"
             Clicked="OnNavigateToListaConsultasClicked" 
+            FontAttributes="Bold"
+            Background="Transparent"
+            BorderColor="Transparent"
             />
 
             
@@ -43,6 +44,9 @@
             HorizontalOptions="Center" 
             VerticalOptions="Center"
             Clicked="OnNavigateToPainelMedicoClicked"
+            FontAttributes="Bold"
+            Background="Transparent"
+            BorderColor="Transparent"
              />
 
         <ImageButton
@@ -62,7 +66,13 @@
             FontSize="30"
             HorizontalOptions="Center" 
             VerticalOptions="Center"
-            Clicked="OnNavigateToCadastroContribuintesClicked" />
+            Clicked="OnNavigateToCadastroContribuintesClicked" 
+            FontAttributes="Bold"
+            Background="Transparent"
+            BorderColor="Transparent"
+            
+            
+            />
 
         <Button
             Grid.Column="4"
@@ -70,6 +80,22 @@
             TextColor="white"
             FontSize="30"
             HorizontalOptions="Center" 
-            VerticalOptions="Center" />
+            VerticalOptions="Center" 
+            FontAttributes="Bold"
+            Background="Transparent"
+            BorderColor="Transparent"
+            
+            />
+
+         <ImageButton 
+            Grid.Column="5"
+            Source="perfilicon.png"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Background="Transparent"
+            BorderColor="Transparent"
+            Clicked="OnNavigateToPerfilClicked"
+            />
+
     </Grid>
 </ContentView>

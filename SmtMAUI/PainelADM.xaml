@@ -80,7 +80,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="217" FontSize="24" TextColor="White"/>
+                        <Label Text="17" FontSize="24" TextColor="White"/>
                         <Label Text="Consultas Canceladas" FontSize="12" TextColor="White"/>
                     </StackLayout>
 
