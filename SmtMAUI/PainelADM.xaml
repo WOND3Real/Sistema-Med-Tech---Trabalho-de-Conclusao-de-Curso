@@ -17,8 +17,6 @@
 
        
         <Grid Grid.Row="1" Padding="20"  ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10" HorizontalOptions="Start">
-
-            
             
                 <Frame Background="#FFA234"
                        WidthRequest="175" 
@@ -28,7 +26,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="217" FontSize="24" TextColor="White"/>
+                        <Label x:Name="NumConsultas" Text="0" FontSize="24" TextColor="White"/>
                         <Label Text="Consultas Cadastradas" FontSize="12" TextColor="White"/>
                     </StackLayout>
 
@@ -41,7 +39,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="20" FontSize="24" TextColor="White"/>
+                        <Label x:Name="NumContribuentes" Text="0" FontSize="24" TextColor="White"/>
                         <Label Text="Contribuintes Cadastrados" FontSize="11"  TextColor="White"/>
                     </StackLayout>
 
@@ -54,7 +52,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="150" FontSize="24" TextColor="White"/>
+                        <Label x:Name="NumConcluidas" Text="0" FontSize="24" TextColor="White"/>
                         <Label Text="Consultas Concluidas" FontSize="12" TextColor="White"/>
                     </StackLayout>
 
@@ -80,16 +78,16 @@
 
                     >
                     <StackLayout>
+<<<<<<< Updated upstream
                         <Label Text="17" FontSize="24" TextColor="White"/>
+=======
+                        <Label x:Name="NumCanceldas" Text="0" FontSize="24" TextColor="White"/>
+>>>>>>> Stashed changes
                         <Label Text="Consultas Canceladas" FontSize="12" TextColor="White"/>
                     </StackLayout>
 
                 </Frame>
 
-            
-                
-
-               
         </Grid>
 
 

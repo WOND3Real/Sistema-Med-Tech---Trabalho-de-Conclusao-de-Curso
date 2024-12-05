@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
@@ -34,6 +35,12 @@
             "netCore": {
                 "appProject": "${workspaceFolder}/SmtMAUI/SmtMAUI.csproj"
             }
+        },
+        {
+            "name": "C#: SMT [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\SMT\\SMT.csproj"
         }
     ]
 }

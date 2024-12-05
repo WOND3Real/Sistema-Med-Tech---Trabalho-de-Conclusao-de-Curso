@@ -1,5 +1,5 @@
 {
-    "name": "MyApp DevContainer",
+    "name": "SMT DevContainer",
     "dockerComposeFile": ["../docker-compose.yml"],
     "service": "backend",
     "workspaceFolder": "/workspace",

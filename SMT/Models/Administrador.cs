@@ -1,19 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SMT.Models;
 
+[Table("administrador")]
 public partial class Administrador
 {
-    public int Idadministrador { get; set; }
+    [Key]
+    [Column("idadministrador")]
+    [Required(ErrorMessage = "O campo ID do Administrador é obrigatório.")]
+    public int IdAdministrador { get; set; }
 
-    public int UnidadeIdunidade { get; set; }
+    [Column("unidade_idunidade")]
+    [Required(ErrorMessage = "O campo Unidade é obrigatório.")]
+    public int UnidadeIdUnidade { get; set; }
 
-    public string? Nomeadm { get; set; }
+    [Column("nomeadm")]
+    [Required(ErrorMessage = "O campo Nome é obrigatório.")]
+    [StringLength(20, ErrorMessage = "O Nome deve ter no máximo 20 caracteres.")]
+    public string NomeAdm { get; set; } = null!;
 
-    public string? Sobrenomeadm { get; set; }
+    [Column("sobrenomeadm")]
+    [Required(ErrorMessage = "O campo Sobrenome é obrigatório.")]
+    [StringLength(20, ErrorMessage = "O Sobrenome deve ter no máximo 20 caracteres.")]
+    public string SobrenomeAdm { get; set; } = null!;
 
-    public string? Senhaadm { get; set; }
+    [Column("senhaadm")]
+    [Required(ErrorMessage = "O campo Senha é obrigatório.")]
+    [StringLength(20, ErrorMessage = "A Senha deve ter no máximo 20 caracteres.")]
+    public string SenhaAdm { get; set; } = null!;
 
-    public virtual Unidade UnidadeIdunidadeNavigation { get; set; } = null!;
+    [ForeignKey("UnidadeIdUnidade")]
+    public virtual Unidade UnidadeIdUnidadeNavigation { get; set; } = null!;
 }

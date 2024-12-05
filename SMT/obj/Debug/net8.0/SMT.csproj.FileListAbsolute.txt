@@ -98,3 +98,6 @@ C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-d
 C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\SMT\obj\Debug\net8.0\SMT.pdb
 C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\SMT\obj\Debug\net8.0\SMT.genruntimeconfig.cache
 C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\SMT\obj\Debug\net8.0\ref\SMT.dll
+C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\SMT\bin\Debug\net8.0\SMT.staticwebassets.endpoints.json
+C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\SMT\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\SMT\obj\Debug\net8.0\staticwebassets\msbuild.SMT.Microsoft.AspNetCore.StaticWebAssetEndpoints.props

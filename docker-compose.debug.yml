@@ -29,17 +29,6 @@ services:
     volumes:
       - .:/src  # Monta o diretório atual para permitir alterações em tempo real
 
-  smt_maui_service:
-    build:
-      context: .  # O diretório onde o Dockerfile do SmtMAUI está localizado
-      dockerfile: SmtMAUI/Dockerfile  # Caminho para o Dockerfile do SmtMAUI
-    ports:
-      - "5000:5000"  # Substitua pela porta que o SmtMAUI deve usar, se necessário
-    depends_on:
-      - db  # Espera o serviço de banco de dados estar disponível
-    volumes:
-      - .:/src  # Monta o diretório atual para permitir alterações em tempo real
-
 volumes:
   db_data:  # Volume para persistir os dados do banco de dados
 

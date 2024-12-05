@@ -12,48 +12,87 @@ public class UnidadeService
     }
 
     // Método para adicionar uma unidade
-    public void AdicionarUnidade(Unidade unidade)
+    public async Task<bool> AdicionarUnidade(Unidade unidade)
     {
-        _context.Unidades.Add(unidade);
-        _context.SaveChanges();
+        try
+        {
+            await _context.Unidades.AddAsync(unidade);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao adicionar unidade: {ex.Message}", ex);
+        }
     }
 
     // Método para atualizar uma unidade
-    public void AtualizarUnidade(Unidade unidade)
+    public async Task<bool> AtualizarUnidade(Unidade unidade)
     {
-        var unidadeExistente = _context.Unidades
-            .FirstOrDefault(u => u.Idunidade == unidade.Idunidade); // Usando o ID da unidade recebida
-
-        if (unidadeExistente != null)
+        try
         {
-            unidadeExistente.Nomeunidade = unidade.Nomeunidade;
-            unidadeExistente.Cepuni = unidade.Cepuni;
-            unidadeExistente.Logradourouni = unidade.Logradourouni;
-            unidadeExistente.Numerouni = unidade.Numerouni;
-            unidadeExistente.Bairrouni = unidade.Bairrouni;
-            unidadeExistente.Cidadeuni = unidade.Cidadeuni;
-            unidadeExistente.Estadouni = unidade.Estadouni;
-            unidadeExistente.Paisuni = unidade.Paisuni;
-            _context.SaveChanges();
+            var unidadeExistente = await _context.Unidades
+                .FirstOrDefaultAsync(u => u.Idunidade == unidade.Idunidade);
+
+            if (unidadeExistente != null)
+            {
+                unidadeExistente.Nomeunidade = unidade.Nomeunidade;
+                unidadeExistente.Cepuni = unidade.Cepuni;
+                unidadeExistente.Logradourouni = unidade.Logradourouni;
+                unidadeExistente.Numerouni = unidade.Numerouni;
+                unidadeExistente.Bairrouni = unidade.Bairrouni;
+                unidadeExistente.Cidadeuni = unidade.Cidadeuni;
+                unidadeExistente.Estadouni = unidade.Estadouni;
+                unidadeExistente.Paisuni = unidade.Paisuni;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false; // Caso a unidade não seja encontrada
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao atualizar unidade: {ex.Message}", ex);
         }
     }
 
     // Método para buscar uma unidade
-    public Unidade? BuscarUnidade(int id) // Alterando para retornar uma Unidade?
+    public async Task<Unidade?> BuscarUnidade(int id)
     {
-        return _context.Unidades.FirstOrDefault(u => u.Idunidade == id);
+        try
+        {
+            return await _context.Unidades
+                .FirstOrDefaultAsync(u => u.Idunidade == id);
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao buscar unidade: {ex.Message}", ex);
+        }
     }
 
     // Método para deletar uma unidade
-    public void DeletarUnidade(int id)
+    public async Task<bool> DeletarUnidade(int id)
     {
-        var unidadeExistente = _context.Unidades
-            .FirstOrDefault(u => u.Idunidade == id);
-
-        if (unidadeExistente != null)
+        try
         {
-            _context.Unidades.Remove(unidadeExistente);
-            _context.SaveChanges();
+            var unidadeExistente = await _context.Unidades
+                .FirstOrDefaultAsync(u => u.Idunidade == id);
+
+            if (unidadeExistente != null)
+            {
+                _context.Unidades.Remove(unidadeExistente);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false; // Caso a unidade não seja encontrada
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao deletar unidade: {ex.Message}", ex);
         }
     }
 }

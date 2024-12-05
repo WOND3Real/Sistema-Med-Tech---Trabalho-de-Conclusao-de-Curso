@@ -2,13 +2,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using SMT.Models;
 
-public enum Genero
-{
-    Masculino,
-    Feminino,
-    Outro
-}
-
 [Table("paciente")]
 public partial class Paciente
 {
@@ -34,7 +27,7 @@ public partial class Paciente
 
     [Column("genero")]
     [Required(ErrorMessage = "O campo Gênero é obrigatório.")]
-    public Genero generoPaci { get; set; }
+    public string GeneroPaci { get; set; } = null!;
 
     [Column("emailpaci")]
     [Required(ErrorMessage = "O campo Email é obrigatório.")]

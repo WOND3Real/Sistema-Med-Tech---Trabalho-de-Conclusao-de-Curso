@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SMT.Models;
-using System;
+using System.Text.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace SMT.Controllers
 {
@@ -17,54 +18,165 @@ namespace SMT.Controllers
 
         // POST: api/Administrador
         [HttpPost]
-        public IActionResult AdicionarAdministrador([FromBody] Administrador administrador)
+        public async Task<IActionResult> AdicionarAdministrador([FromBody] JsonElement json)
         {
-            Console.WriteLine("AdicionarAdministrador chamado");
-
-            if (administrador == null)
+            try
             {
-                Console.WriteLine("Erro: Administrador é nulo");
-                return BadRequest("Administrador não pode ser nulo.");
-            }
+                // Extrair valores do JSON
+                string nomeAdm = json.GetProperty("NomeAdm").GetString() ?? throw new ArgumentNullException("NomeAdm não pode ser nulo.");
+                string sobrenomeAdm = json.GetProperty("SobrenomeAdm").GetString() ?? throw new ArgumentNullException("SobrenomeAdm não pode ser nulo.");
+                string senhaAdm = json.GetProperty("SenhaAdm").GetString() ?? throw new ArgumentNullException("SenhaAdm não pode ser nulo.");
+                int unidadeIdUnidade = json.GetProperty("UnidadeIdUnidade").GetInt32();
 
-            Console.WriteLine($"Adicionando administrador: {administrador.Idadministrador}");
-            _administradorService.AdicionarAdministrador(administrador);
-            return CreatedAtAction(nameof(BuscarAdministrador), new { id = administrador.Idadministrador }, administrador);
+                // Criar o objeto Administrador
+                var administrador = new Administrador
+                {
+                    NomeAdm = nomeAdm,
+                    SobrenomeAdm = sobrenomeAdm,
+                    SenhaAdm = senhaAdm,
+                    UnidadeIdUnidade = unidadeIdUnidade
+                };
+
+                // Validar as propriedades do modelo
+                var validationResults = new List<ValidationResult>();
+                var validationContext = new ValidationContext(administrador);
+                if (!Validator.TryValidateObject(administrador, validationContext, validationResults, true))
+                {
+                    return BadRequest(validationResults);
+                }
+
+                // Inserir o administrador no banco de dados
+                var result = await _administradorService.AdicionarAdministrador(administrador);
+
+                if (result)
+                {
+                    return CreatedAtAction(nameof(BuscarAdministrador), new { id = administrador.IdAdministrador }, administrador);
+                }
+                else
+                {
+                    return BadRequest("Erro ao adicionar o administrador.");
+                }
+            }
+            catch (JsonException ex)
+            {
+                // Erro ao processar o JSON
+                return BadRequest($"Erro ao processar o JSON: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Qualquer outro erro
+                return StatusCode(500, $"Erro inesperado: {ex.Message}");
+            }
         }
 
-        // PUT: api/Administrador
-        [HttpPut]
-        public IActionResult AtualizarAdministrador([FromBody] Administrador administrador)
+        // PUT: api/Administrador/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarAdministrador(int id, [FromBody] JsonElement json)
         {
-            Console.WriteLine($"AtualizarAdministrador chamado para ID: {administrador.Idadministrador}");
-            _administradorService.AtualizarAdministrador(administrador);
-            Console.WriteLine("Administrador atualizado com sucesso");
-            return NoContent();
+            try
+            {
+                // Buscar o administrador existente
+                var administradorExistente = await _administradorService.BuscarAdministrador(id);
+                if (administradorExistente == null)
+                {
+                    return NotFound($"Administrador com ID {id} não encontrado.");
+                }
+
+                // Atualizar somente os campos presentes no JSON
+                if (json.TryGetProperty("NomeAdm", out JsonElement nomeAdmElement))
+                {
+                    administradorExistente.NomeAdm = nomeAdmElement.GetString();
+                }
+                if (json.TryGetProperty("SobrenomeAdm", out JsonElement sobrenomeAdmElement))
+                {
+                    administradorExistente.SobrenomeAdm = sobrenomeAdmElement.GetString();
+                }
+                if (json.TryGetProperty("SenhaAdm", out JsonElement senhaAdmElement))
+                {
+                    administradorExistente.SenhaAdm = senhaAdmElement.GetString();
+                }
+                if (json.TryGetProperty("UnidadeIdUnidade", out JsonElement unidadeIdElement))
+                {
+                    administradorExistente.UnidadeIdUnidade = unidadeIdElement.GetInt32();
+                }
+
+                // Validar as propriedades do modelo
+                var validationResults = new List<ValidationResult>();
+                var validationContext = new ValidationContext(administradorExistente);
+                if (!Validator.TryValidateObject(administradorExistente, validationContext, validationResults, true))
+                {
+                    return BadRequest(validationResults);
+                }
+
+                // Atualizar o administrador no banco de dados
+                var result = await _administradorService.AtualizarAdministrador(administradorExistente);
+
+                if (result)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return BadRequest("Erro ao atualizar o administrador.");
+                }
+            }
+            catch (JsonException ex)
+            {
+                // Erro ao processar o JSON
+                return BadRequest($"Erro ao processar o JSON: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Qualquer outro erro
+                return StatusCode(500, $"Erro inesperado: {ex.Message}");
+            }
         }
 
         // GET: api/Administrador/{id}
         [HttpGet("{id}")]
-        public IActionResult BuscarAdministrador(int id)
+        public async Task<IActionResult> BuscarAdministrador(int id)
         {
-            Console.WriteLine($"BuscarAdministrador chamado para ID: {id}");
-            var administrador = _administradorService.BuscarAdministrador(id);
-            if (administrador == null)
+            try
             {
-                Console.WriteLine($"Administrador com ID {id} não encontrado");
-                return NotFound();
+                var administrador = await _administradorService.BuscarAdministrador(id);
+                if (administrador == null)
+                {
+                    return NotFound($"Administrador com ID {id} não encontrado.");
+                }
+                return Ok(administrador);
             }
-            Console.WriteLine($"Administrador encontrado: {administrador.Idadministrador}");
-            return Ok(administrador);
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao buscar administrador: {ex.Message}");
+            }
         }
 
         // DELETE: api/Administrador/{id}
         [HttpDelete("{id}")]
-        public IActionResult DeletarAdministrador(int id)
+        public async Task<IActionResult> DeletarAdministrador(int id)
         {
-            Console.WriteLine($"DeletarAdministrador chamado para ID: {id}");
-            _administradorService.DeletarAdministrador(id);
-            Console.WriteLine($"Administrador com ID {id} deletado");
-            return NoContent();
+            try
+            {
+                var administradorExistente = await _administradorService.BuscarAdministrador(id);
+                if (administradorExistente == null)
+                {
+                    return NotFound($"Administrador com ID {id} não encontrado.");
+                }
+
+                var result = await _administradorService.DeletarAdministrador(id);
+                if (result)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return BadRequest("Erro ao deletar o administrador.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao deletar administrador: {ex.Message}");
+            }
         }
     }
 }

@@ -1,40 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SMT.Models;
-public enum Statusconsulta{
-    Pendente,Andamento,Concluida,Cancelada
-}
 
 [Table("consulta")]
 public partial class Consultum
 {
-    public int Idconsulta { get; set; }
+    [Key]
+    [Column("idconsulta")]
+    public int IdConsulta { get; set; }
 
-    public string PacienteCpfpaci { get; set; } = null!;
+    [Column("paciente_cpfpaci")]
+    [Required(ErrorMessage = "O campo CPF do Paciente é obrigatório.")]
+    [StringLength(14, ErrorMessage = "O CPF do Paciente deve ter no máximo 14 caracteres.")]
+    public string PacienteCpfPaci { get; set; } = null!;
 
-    public string AtendenteCtpsatend { get; set; } = null!;
+    [Column("atendente_ctpsatend")]
+    [Required(ErrorMessage = "O campo CTPS do Atendente é obrigatório.")]
+    [StringLength(15, ErrorMessage = "O CTPS do Atendente deve ter no máximo 15 caracteres.")]
+    public string AtendenteCtpsAtend { get; set; } = null!;
 
-    public string MedicoCrmmed { get; set; } = null!;
+    [Column("medico_crmmed")]
+    [Required(ErrorMessage = "O campo CRM do Médico é obrigatório.")]
+    [StringLength(7, ErrorMessage = "O CRM do Médico deve ter no máximo 7 caracteres.")]
+    public string MedicoCrmMed { get; set; } = null!;
 
-    public int UnidadeIdunidade { get; set; }
+    [Column("unidade_idunidade")]
+    [Required(ErrorMessage = "O campo ID da Unidade é obrigatório.")]
+    public int UnidadeIdUnidade { get; set; }
 
-    public int EspecialidadeIdespecialidade { get; set; }
+    [Column("especialidade_idespecialidade")]
+    [Required(ErrorMessage = "O campo ID da Especialidade é obrigatório.")]
+    public int EspecialidadeIdEspecialidade { get; set; }
 
-    public DateOnly Dataconsul { get; set; }
+    [Column("dataconsul")]
+    [Required(ErrorMessage = "O campo Data da Consulta é obrigatório.")]
+    public DateOnly DataConsul { get; set; }
 
-    public TimeOnly Horaconsul { get; set; }
+    [Column("horaconsul")]
+    [Required(ErrorMessage = "O campo Hora da Consulta é obrigatório.")]
+    public TimeOnly HoraConsul { get; set; }
 
-    public Statusconsulta statusconsul { get; set; }
+    [Column("statusconsul")]
+    [Required(ErrorMessage = "O campo Status da Consulta é obrigatório.")]
+    public string StatusConsul { get; set; } = null!;
 
-    public virtual Atendente AtendenteCtpsatendNavigation { get; set; } = null!;
+    // Navegação para Atendente
+    [ForeignKey("AtendenteCtpsAtend")]
+    public virtual Atendente AtendenteCtpsAtendNavigation { get; set; } = null!;
 
-    public virtual Especialidade EspecialidadeIdespecialidadeNavigation { get; set; } = null!;
+    // Navegação para Especialidade
+    [ForeignKey("EspecialidadeIdEspecialidade")]
+    public virtual Especialidade EspecialidadeIdEspecialidadeNavigation { get; set; } = null!;
 
-    public virtual Medico MedicoCrmmedNavigation { get; set; } = null!;
+    // Navegação para Médico
+    [ForeignKey("MedicoCrmMed")]
+    public virtual Medico MedicoCrmMedNavigation { get; set; } = null!;
 
-    public virtual Paciente PacienteCpfpaciNavigation { get; set; } = null!;
+    // Navegação para Paciente
+    [ForeignKey("PacienteCpfPaci")]
+    public virtual Paciente PacienteCpfPaciNavigation { get; set; } = null!;
 
-    public virtual Unidade UnidadeIdunidadeNavigation { get; set; } = null!;
+    // Navegação para Unidade
+    [ForeignKey("UnidadeIdUnidade")]
+    public virtual Unidade UnidadeIdUnidadeNavigation { get; set; } = null!;
 }
