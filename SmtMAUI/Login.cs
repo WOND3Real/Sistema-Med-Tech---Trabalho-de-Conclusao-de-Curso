@@ -1,29 +1,27 @@
 using System;
 using Microsoft.Maui.Controls;
+using System.Net.Http;
 
-namespace SmtMAUI;
-
-public partial class Login : ContentPage
+namespace SmtMAUI
 {
-	public Login()
-	{
-		InitializeComponent();
-	}
+    public partial class Login : ContentPage
+    {
+        private readonly HttpClient _httpClient;
 
-	 private async void OnLoginClicked(object sender, EventArgs e)
+        public Login()
         {
-
-			 // Lógica de autenticação
-            await DisplayAlert("Login", "Bem-vindo ao sistema!", "OK");
-			await Navigation.PushAsync(new PainelADM());
-
+            InitializeComponent();
+            _httpClient = new HttpClient();  // Criando o HttpClient
         }
-    
-		
-      
 
+        private async void OnLoginClicked(object sender, EventArgs e)
+        {
+            // Lógica de autenticação
+            await DisplayAlert("Login", "Bem-vindo ao sistema!", "OK");
 
-
-
+            // Navegar para o PainelADM passando o HttpClient
+            await Navigation.PushAsync(new PainelADM(_httpClient));
+        }
+    }
 }
-
+ 

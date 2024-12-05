@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SMT.Models;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace SMT.Controllers
 {
@@ -17,54 +21,171 @@ namespace SMT.Controllers
 
         // POST: api/Especialidade
         [HttpPost]
-        public IActionResult AdicionarEspecialidade([FromBody] Especialidade especialidade)
+        public async Task<IActionResult> AdicionarEspecialidade([FromBody] JsonElement json)
         {
-            Console.WriteLine("AdicionarEspecialidade chamado");
-
-            if (especialidade == null)
+            try
             {
-                Console.WriteLine("Erro: Especialidade é nula");
-                return BadRequest("Especialidade não pode ser nula.");
+                // Extrair valores do JSON
+                string nomeEspecialidade = json.GetProperty("Nomeespec").GetString() ?? throw new ArgumentNullException("Nomeespec não pode ser nulo.");
+
+                var especialidadeExistente = await _especialidadeService.BuscarEspecialidade(nomeEspecialidade);
+                if (especialidadeExistente != null)
+                {
+                    return Ok($"Especialidade: {nomeEspecialidade} Já existe.");
+                }else{
+                    // Criar o objeto Especialidade
+                    var especialidade = new Especialidade
+                    {
+                        Nomeespec = nomeEspecialidade
+                    };
+
+                    // Validar as propriedades do modelo
+                    var validationResults = new List<ValidationResult>();
+                    var validationContext = new ValidationContext(especialidade);
+                    if (!Validator.TryValidateObject(especialidade, validationContext, validationResults, true))
+                    {
+                        return BadRequest(validationResults);
+                    }
+
+                    // Inserir a especialidade no banco de dados
+                    var result = await InserirEspecialidade(especialidade);
+
+                    if (result)
+                    {
+                        return CreatedAtAction(nameof(BuscarEspecialidade), new { id = especialidade.Idespecialidade }, especialidade);
+                    }
+                    else
+                    {
+                        return BadRequest("Erro ao adicionar a especialidade.");
+                    }
+                }
+
+            }
+            catch (JsonException ex)
+            {
+                // Erro ao processar o JSON
+                return BadRequest($"Erro ao processar o JSON: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Qualquer outro erro
+                return StatusCode(500, $"Erro inesperado: {ex.Message}");
+            }
+        }
+
+        private async Task<bool> InserirEspecialidade(Especialidade especialidade)
+        {
+            try
+            {
+                return await _especialidadeService.AdicionarEspecialidade(especialidade);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao inserir especialidade: {ex.Message}", ex);
+            }
+        }
+
+        // PUT: api/Especialidade/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarEspecialidade(int id, [FromBody] JsonElement json)
+        {
+        try
+        {
+            // Buscar a especialidade existente
+            var especialidadeExistente = await _especialidadeService.BuscarEspecialidade(id);
+            if (especialidadeExistente == null)
+            {
+                return NotFound($"Especialidade com ID {id} não encontrada.");
             }
 
-            Console.WriteLine($"Adicionando especialidade: {especialidade.Nomeespec}");
-            _especialidadeService.AdicionarEspecialidade(especialidade);
-            return CreatedAtAction(nameof(BuscarEspecialidade), new { id = especialidade.Idespecialidade }, especialidade);
-        }
+            // Verificar se o campo "Nomeespec" está presente no JSON
+            if (json.TryGetProperty("Nomeespec", out JsonElement nomeespecElement))
+            {
+                especialidadeExistente.Nomeespec = nomeespecElement.GetString();
 
-        // PUT: api/Especialidade
-        [HttpPut]
-        public IActionResult AtualizarEspecialidade([FromBody] Especialidade especialidade)
-        {
-            Console.WriteLine($"AtualizarEspecialidade chamado para ID: {especialidade.Idespecialidade}");
-            _especialidadeService.AtualizarEspecialidade(especialidade);
-            Console.WriteLine("Especialidade atualizada com sucesso");
-            return NoContent();
+                var especialidadeExistenteVerify = await _especialidadeService.BuscarEspecialidade(especialidadeExistente.Nomeespec);
+                if (especialidadeExistenteVerify != null)
+                {
+                    return Ok($"Especialidade: {especialidadeExistente.Nomeespec} já existe.");
+                }
+                else
+                {
+                    // Validar as propriedades do modelo
+                    var validationResults = new List<ValidationResult>();
+                    var validationContext = new ValidationContext(especialidadeExistente);
+                    if (!Validator.TryValidateObject(especialidadeExistente, validationContext, validationResults, true))
+                    {
+                        return BadRequest(validationResults);
+                    }
+
+                    // Atualizar a especialidade no banco de dados
+                    var result = await _especialidadeService.AtualizarEspecialidade(especialidadeExistente);
+
+                    if (result)
+                    {
+                        return NoContent(); // Sucesso: Sem conteúdo para retornar
+                    }
+                    else
+                    {
+                        return BadRequest("Erro ao atualizar a especialidade.");
+                    }
+                }
+            }
+
+            // Caso o JSON não contenha o campo "Nomeespec", retornar erro
+            return BadRequest("Campo 'Nomeespec' não encontrado no JSON.");
         }
+        catch (JsonException ex)
+        {
+            // Erro ao processar o JSON
+            return BadRequest($"Erro ao processar o JSON: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            // Qualquer outro erro
+            return StatusCode(500, $"Erro inesperado: {ex.Message}");
+        }
+    }
+
 
         // GET: api/Especialidade/{id}
         [HttpGet("{id}")]
-        public IActionResult BuscarEspecialidade(int id)
+        public async Task<IActionResult> BuscarEspecialidade(int id)
         {
-            Console.WriteLine($"BuscarEspecialidade chamado para ID: {id}");
-            var especialidade = _especialidadeService.BuscarEspecialidade(id);
-            if (especialidade == null)
+            try
             {
-                Console.WriteLine($"Especialidade com ID {id} não encontrada");
-                return NotFound();
+                var especialidade = await _especialidadeService.BuscarEspecialidade(id);
+                if (especialidade == null)
+                {
+                    return NotFound($"Especialidade com ID {id} não encontrada.");
+                }
+                return Ok(especialidade);
             }
-            Console.WriteLine($"Especialidade encontrada: {especialidade.Nomeespec}");
-            return Ok(especialidade);
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao buscar especialidade: {ex.Message}");
+            }
         }
 
         // DELETE: api/Especialidade/{id}
         [HttpDelete("{id}")]
-        public IActionResult DeletarEspecialidade(int id)
+        public async Task<IActionResult> DeletarEspecialidade(int id)
         {
-            Console.WriteLine($"DeletarEspecialidade chamado para ID: {id}");
-            _especialidadeService.DeletarEspecialidade(id);
-            Console.WriteLine($"Especialidade com ID {id} deletada");
-            return NoContent();
+            try
+            {
+                var especialidadeExistente = await _especialidadeService.BuscarEspecialidade(id);
+                if (especialidadeExistente == null)
+                {
+                    return NotFound($"Especialidade com ID {id} não encontrada.");
+                }
+
+                await _especialidadeService.DeletarEspecialidade(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao deletar especialidade: {ex.Message}");
+            }
         }
     }
 }

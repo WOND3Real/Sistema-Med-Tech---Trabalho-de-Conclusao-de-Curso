@@ -32,7 +32,8 @@
                            TextColor="#4A0072" />
                     
                     <!-- Campo de Email -->
-                    <Entry Placeholder="Digite seu email..."                      
+                    <Entry x:Name="IdentificadorEntry"
+                           Placeholder="Digite seu Login..."                      
                            Keyboard="Email"
                            FontSize="16"
                            Margin="0,0,0,10" 
@@ -40,7 +41,8 @@
                            />
                     
                     <!-- Campo de Senha -->
-                    <Entry Placeholder="Digite sua senha..."
+                    <Entry x:Name="SenhaEntry"
+                           Placeholder="Digite sua senha..."
                            IsPassword="True"
                            FontSize="16"
                            Margin="0,0,0,10"
@@ -54,32 +56,25 @@
                            HorizontalOptions="Center" />
                     
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                        <Button Text="Atendente"
-                                BackgroundColor="#4A0072"
-                                TextColor="White"
-                                CornerRadius="40"
-                                WidthRequest="80"
-                                HeightRequest="80"
-                                 />
-                        <Button Text="ADM"
-                                BackgroundColor="#4A0072"
-                                TextColor="White"
-                                CornerRadius="40"
-                                WidthRequest="80" 
-                                HeightRequest="80"
-
-                                
-                                />
-                        <Button Text="Médico"
-                                BackgroundColor="#4A0072"
-                                TextColor="White"
-                                CornerRadius="40"
-                                WidthRequest="80" 
-                                HeightRequest="80"
-
-                                
-                                />
-                    </HorizontalStackLayout>
+                            <Button Text="Atendente"
+                                   BackgroundColor="#4A0072"
+                                   TextColor="White"
+                                   CornerRadius="40"
+                                   WidthRequest="80"
+                                   HeightRequest="80"/>
+                            <Button Text="ADM"
+                                   BackgroundColor="#4A0072"
+                                   TextColor="White"
+                                   CornerRadius="40"
+                                   WidthRequest="80" 
+                                   HeightRequest="80"/>
+                            <Button Text="Médico"
+                                   BackgroundColor="#4A0072"
+                                   TextColor="White"
+                                   CornerRadius="40"
+                                   WidthRequest="80" 
+                                   HeightRequest="80"/>
+                     </HorizontalStackLayout>
                     
                     <!-- Link Esqueci a Senha -->
                     <Label Text="Esqueci a senha"

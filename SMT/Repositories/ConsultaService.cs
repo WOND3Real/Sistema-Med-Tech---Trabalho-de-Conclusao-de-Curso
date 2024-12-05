@@ -1,6 +1,8 @@
 using SMT.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 public class ConsultaService
 {
@@ -12,48 +14,87 @@ public class ConsultaService
     }
 
     // Método para adicionar uma consulta
-    public void AdicionarConsulta(Consultum consulta)
+    public async Task<bool> AdicionarConsulta(Consultum consulta)
     {
-        _context.Consulta.Add(consulta);
-        _context.SaveChanges();
+        try
+        {
+            await _context.Consulta.AddAsync(consulta);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao adicionar consulta: {ex.Message}", ex);
+        }
     }
 
     // Método para atualizar uma consulta
-    public void AtualizarConsulta(Consultum consulta)
+    public async Task<bool> AtualizarConsulta(Consultum consulta)
     {
-        var consultaExistente = _context.Consulta
-            .FirstOrDefault(c => c.Idconsulta == consulta.Idconsulta); // Usando o ID da consulta recebida
-
-        if (consultaExistente != null)
+        try
         {
-            consultaExistente.PacienteCpfpaci = consulta.PacienteCpfpaci;
-            consultaExistente.AtendenteCtpsatend = consulta.AtendenteCtpsatend;
-            consultaExistente.MedicoCrmmed = consulta.MedicoCrmmed;
-            consultaExistente.UnidadeIdunidade = consulta.UnidadeIdunidade;
-            consultaExistente.EspecialidadeIdespecialidade = consulta.EspecialidadeIdespecialidade;
-            consultaExistente.Dataconsul = consulta.Dataconsul;
-            consultaExistente.Horaconsul = consulta.Horaconsul;
-            consultaExistente.statusconsul = consulta.statusconsul;
-            _context.SaveChanges();
+            var consultaExistente = await _context.Consulta
+                .FirstOrDefaultAsync(c => c.IdConsulta == consulta.IdConsulta);
+
+            if (consultaExistente != null)
+            {
+                consultaExistente.PacienteCpfPaci = consulta.PacienteCpfPaci;
+                consultaExistente.AtendenteCtpsAtend = consulta.AtendenteCtpsAtend;
+                consultaExistente.MedicoCrmMed = consulta.MedicoCrmMed;
+                consultaExistente.UnidadeIdUnidade = consulta.UnidadeIdUnidade;
+                consultaExistente.EspecialidadeIdEspecialidade = consulta.EspecialidadeIdEspecialidade;
+                consultaExistente.DataConsul = consulta.DataConsul;
+                consultaExistente.HoraConsul = consulta.HoraConsul;
+                consultaExistente.StatusConsul = consulta.StatusConsul;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false; // Caso a consulta não seja encontrada
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao atualizar consulta: {ex.Message}", ex);
         }
     }
 
     // Método para buscar uma consulta
-    public Consultum? BuscarConsulta(int id) // Alterando para retornar uma Consultum?
+    public async Task<Consultum?> BuscarConsulta(int id)
     {
-        return _context.Consulta.FirstOrDefault(c => c.Idconsulta == id);
+        try
+        {
+            return await _context.Consulta
+                .FirstOrDefaultAsync(c => c.IdConsulta == id);
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao buscar consulta: {ex.Message}", ex);
+        }
     }
 
     // Método para deletar uma consulta
-    public void DeletarConsulta(int id)
+    public async Task<bool> DeletarConsulta(int id)
     {
-        var consultaExistente = _context.Consulta
-            .FirstOrDefault(c => c.Idconsulta == id);
-
-        if (consultaExistente != null)
+        try
         {
-            _context.Consulta.Remove(consultaExistente);
-            _context.SaveChanges();
+            var consultaExistente = await _context.Consulta
+                .FirstOrDefaultAsync(c => c.IdConsulta == id);
+
+            if (consultaExistente != null)
+            {
+                _context.Consulta.Remove(consultaExistente);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false; // Caso a consulta não seja encontrada
+        }
+        catch (Exception ex)
+        {
+            // Lida com erro
+            throw new Exception($"Erro ao deletar consulta: {ex.Message}", ex);
         }
     }
 }

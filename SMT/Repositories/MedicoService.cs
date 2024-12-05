@@ -1,6 +1,5 @@
 using SMT.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 public class MedicoService
 {
@@ -12,46 +11,116 @@ public class MedicoService
     }
 
     // Método para adicionar um médico
-    public void AdicionarMedico(Medico medico)
+    public bool AdicionarMedico(Medico medico)
     {
-        _context.Medicos.Add(medico);
-        _context.SaveChanges();
+        try
+        {
+            Console.WriteLine("Iniciando o método AdicionarMedico...");
+
+            using (var context = new ContextoBD())
+            {
+                // Verifica se o médico já existe
+                var medicoExistente = context.Medicos
+                    .FirstOrDefault(m => m.Crmmed == medico.Crmmed);
+
+                if (medicoExistente != null)
+                {
+                    Console.WriteLine("Médico já existe no banco.");
+                    return false;
+                }
+
+                Console.WriteLine("Médico não encontrado. Tentando adicionar...");
+
+                // Adiciona o médico
+                context.Medicos.Add(medico);
+                var linhasAfetadas = context.SaveChanges();
+
+                Console.WriteLine($"Linhas afetadas: {linhasAfetadas}");
+                return linhasAfetadas > 0;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro capturado: {ex.Message}");
+            return false;
+        }
     }
+
+
 
     // Método para atualizar um médico
-    public void AtualizarMedico(Medico medico)
+    public async Task<bool> AtualizarMedico(Medico medico)
     {
-        var medicoExistente = _context.Medicos
-            .FirstOrDefault(m => m.Crmmed == medico.Crmmed); // Usando o CRM do médico recebido
-
-        if (medicoExistente != null)
+        try
         {
-            medicoExistente.Nomemed = medico.Nomemed;
-            medicoExistente.Sobrenomemed = medico.Sobrenomemed;
-            medicoExistente.Telefonemed = medico.Telefonemed;
-            medicoExistente.Emailmed = medico.Emailmed;
-            medicoExistente.Senhamed = medico.Senhamed;
-            // A lista de especialidades e unidades pode ser atualizada se necessário
-            _context.SaveChanges();
+            var medicoExistente = await _context.Medicos
+                .FirstOrDefaultAsync(m => m.Crmmed == medico.Crmmed);
+
+            if (medicoExistente != null)
+            {
+                medicoExistente.Nomemed = medico.Nomemed;
+                medicoExistente.Sobrenomemed = medico.Sobrenomemed;
+                medicoExistente.Telefonemed = medico.Telefonemed;
+                medicoExistente.Emailmed = medico.Emailmed;
+                medicoExistente.Senhamed = medico.Senhamed;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // Log do erro (ex.Message) ou outra ação apropriada
+            return false;
         }
     }
+
+
 
     // Método para buscar um médico
-    public Medico? BuscarMedico(string crm) // Alterando para retornar um Medico?
+    public async Task<Medico?> BuscarMedico(string crm)
     {
-        return _context.Medicos.FirstOrDefault(m => m.Crmmed == crm);
-    }
-
-    // Método para deletar um médico
-    public void DeletarMedico(string crm)
-    {
-        var medicoExistente = _context.Medicos
-            .FirstOrDefault(m => m.Crmmed == crm);
-
-        if (medicoExistente != null)
+        try
         {
-            _context.Medicos.Remove(medicoExistente);
-            _context.SaveChanges();
+            return await _context.Medicos.FirstOrDefaultAsync(m => m.Crmmed == crm);
+        }
+        catch (Exception ex)
+        {
+            // Log do erro (ex.Message) ou outra ação apropriada
+            return null;
         }
     }
+
+
+
+    // Método para deletar um médico
+    public async Task<bool> DeletarMedico(string crm)
+    {
+        try
+        {
+            Console.WriteLine($"Tentando deletar médico com CRM: {crm}");
+
+            var medicoExistente = await _context.Medicos.FirstOrDefaultAsync(m => m.Crmmed == crm);
+            if (medicoExistente == null)
+            {
+                Console.WriteLine($"Médico com CRM {crm} não encontrado.");
+                return false;
+            }
+
+            Console.WriteLine($"Médico com CRM {crm} encontrado. Deletando...");
+
+            _context.Medicos.Remove(medicoExistente);
+            await _context.SaveChangesAsync();
+
+            Console.WriteLine($"Médico com CRM {crm} deletado com sucesso.");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao deletar médico: {ex.Message}");
+            return false;
+        }
+    }
+
 }

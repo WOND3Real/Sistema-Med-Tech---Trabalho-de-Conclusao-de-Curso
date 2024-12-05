@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Helton\\Documents\\VScodeProjs\\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\\SmtMAUI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C90415FF-31B3-47B1-88D9-AEE2B1A1A7D6}|SmtMAUI.csproj|c:\\users\\helton\\documents\\vscodeprojs\\sistema-med-tech---trabalho-de-conclusao-de-curso\\smtmaui\\smtmaui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C90415FF-31B3-47B1-88D9-AEE2B1A1A7D6}|SmtMAUI.csproj|solutionrelative:smtmaui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SmtMAUI.csproj",
+              "DocumentMoniker": "C:\\Users\\Helton\\Documents\\VScodeProjs\\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\\SmtMAUI\\SmtMAUI.csproj",
+              "RelativeDocumentMoniker": "SmtMAUI.csproj",
+              "ToolTip": "C:\\Users\\Helton\\Documents\\VScodeProjs\\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\\SmtMAUI\\SmtMAUI.csproj",
+              "RelativeToolTip": "SmtMAUI.csproj",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAMAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-04T17:46:47.829Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

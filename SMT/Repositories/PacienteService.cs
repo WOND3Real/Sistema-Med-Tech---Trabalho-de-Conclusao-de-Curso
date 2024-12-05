@@ -13,16 +13,37 @@ public class PacienteService
     // Método para adicionar um paciente
     public async Task<bool> AdicionarPaciente(Paciente paciente)
     {
-        // Verifica se o paciente já existe
-        if (await _context.Pacientes.AnyAsync(p => p.CpfPaci == paciente.CpfPaci))
+        try
         {
-            return false; // O paciente já existe
-        }
+            Console.WriteLine("Iniciando o método AdicionarPaciente...");
 
-        await _context.Pacientes.AddAsync(paciente);
-        await _context.SaveChangesAsync();
-        return true; // Paciente adicionado com sucesso
+            // Verifica se o paciente já existe
+            var pacienteExistente = await _context.Pacientes
+                .FirstOrDefaultAsync(p => p.CpfPaci == paciente.CpfPaci);
+
+            if (pacienteExistente != null)
+            {
+                Console.WriteLine("Paciente já existe no banco.");
+                return false;
+            }
+
+            Console.WriteLine("Paciente não encontrado. Tentando adicionar...");
+
+            // Adiciona o paciente
+            _context.Pacientes.Add(paciente);
+            var linhasAfetadas = await _context.SaveChangesAsync();
+
+            Console.WriteLine($"Linhas afetadas: {linhasAfetadas}");
+            return linhasAfetadas > 0;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro capturado: {ex.Message}");
+            return false;
+        }
     }
+
+
 
 
     // Método para atualizar um paciente
@@ -38,7 +59,7 @@ public class PacienteService
                 pacienteExistente.NomePaci = paciente.NomePaci;
                 pacienteExistente.SobrenomePaci = paciente.SobrenomePaci;
                 pacienteExistente.NascimentoPaci = paciente.NascimentoPaci;
-                pacienteExistente.generoPaci = paciente.generoPaci;
+                pacienteExistente.GeneroPaci = paciente.GeneroPaci;
                 pacienteExistente.EmailPaci = paciente.EmailPaci;
                 pacienteExistente.TelefonePaci = paciente.TelefonePaci;
                 pacienteExistente.SenhaPaci = paciente.SenhaPaci;
