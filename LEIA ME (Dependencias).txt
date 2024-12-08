@@ -8,6 +8,13 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 
 dotnet workload install maui
 
+dotnet add package Newtonsoft.Json
+
+dotnet add package Microsoft.UI.Xaml --version 2.8.7-prerelease.241119001
+
+para mobile:
+cd Mobile_SMT
+dotnet add package Newtonsoft.Json
 
 
 Extensões do VS-code:

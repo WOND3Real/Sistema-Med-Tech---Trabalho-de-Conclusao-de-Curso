@@ -1,21 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SMT.Models;
-
-public partial class Atendente
+namespace SMT.Models
 {
-    public string Ctpsatend { get; set; } = null!;
+    [Table("atendente")]
+    public class Atendente
+    {
+        [Key]
+        [StringLength(15)]
+        [Column("ctpsatend")]
+        public string CTPAtend { get; set; }
 
-    public string Nomeatend { get; set; } = null!;
+        [Required]
+        [StringLength(45)]
+        [Column("nomeatend")]
+        public string NomeAtend { get; set; }
 
-    public string Sobrenomeatend { get; set; } = null!;
+        [Required]
+        [StringLength(45)]
+        [Column("sobrenomeatend")]
+        public string SobrenomeAtend { get; set; }
 
-    public TimeOnly Inicioturnoatend { get; set; }
+        [Required]
+        [Column("inicioturnoatend")]
+        public TimeSpan InicioTurnoAtend { get; set; }
 
-    public TimeOnly Fimturnoatend { get; set; }
+        [Required]
+        [Column("fimturnoatend")]
+        public TimeSpan FimTurnoAtend { get; set; }
 
-    public string Senhaatend { get; set; } = null!;
-
-    public virtual ICollection<Consultum> Consulta { get; set; } = new List<Consultum>();
+        [Required]
+        [StringLength(20)]
+        [Column("senhaatend")]
+        public string SenhaAtend { get; set; }
+    }
 }

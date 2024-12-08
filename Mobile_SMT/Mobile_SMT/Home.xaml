@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.Home"
+             Title="Home"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1.78">
+            <GradientStop Color="#FFA234" Offset="0.00164"/>
+            <GradientStop Color="#54027B" Offset="0.11"/>
+            <GradientStop Color="White" Offset="0.3285"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+
+        <HorizontalStackLayout>
+            <Image Source="ninguen2.png" 
+                   WidthRequest="100"
+                   Margin="20,30,0,0"
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Start"/>
+
+            <VerticalStackLayout>
+
+                <HorizontalStackLayout Spacing="2">
+                    <Label Text="Olá"
+                           TextColor="White"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           Margin="20,50,0,0"/>
+                    <Label Text="{Binding nomePaci}"
+                       TextColor="White"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       Margin="20,50,0,0"/>
+                </HorizontalStackLayout>
+
+                <Label Text="Bem vindo!"
+        TextColor="#242F40"
+        FontSize="20"
+        FontAttributes="Bold"
+        Margin="20,0,0,0"/>
+
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <!-- "Div" personalizada -->
+        <Frame
+             HeightRequest="650"
+             Background="White"
+             BorderColor="White"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="End"
+             Padding="20" 
+             CornerRadius="30">
+            
+
+
+           
+
+            <!-- Conteúdo da "Div" -->
+            <VerticalStackLayout>
+                <Label Text="Próximas Consultas"
+                       FontAttributes="Bold"
+                       TextColor="#43076E"
+                       FontSize="25"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       />
+                
+               <Image Source="calendario2.png" />
+
+
+
+
+                <Button 
+                    ImageSource="R_aiva.png"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    BackgroundColor="#DDDDDD"
+                    TextColor="White"
+                    WidthRequest="325"
+                    HeightRequest="110"
+                    Margin="0,20,0,0"
+                    CornerRadius="30"
+                    FontAttributes="Bold"
+                    Clicked="OnHospitalButtonClicked" />
+
+
+                <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+
+                    <Button 
+            ImageSource="exame.png"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BackgroundColor="#D9d9d9"
+            TextColor="White"
+            WidthRequest="150"
+            HeightRequest="70"
+            Margin="0,20,0,0"
+            CornerRadius="30"
+            FontAttributes="Bold"
+        Clicked="resultado"/>
+
+
+                    <Button 
+            ImageSource="receita.png"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BackgroundColor="#D9d9d9"
+            TextColor="White"
+            WidthRequest="150"
+            HeightRequest="70"
+            Margin="0,20,0,0"
+            CornerRadius="30"
+            FontAttributes="Bold" 
+        Clicked="receita"/>
+
+                </HorizontalStackLayout>
+
+                <Button 
+        ImageSource="chat.png"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        BackgroundColor="#D9d9d9"
+        TextColor="White"
+        WidthRequest="150"
+        HeightRequest="70"
+        Margin="0,10,0,0"
+        CornerRadius="30"
+        FontAttributes="Bold" 
+        Clicked="OnHistoricoButtonClicked"/>
+
+
+
+
+
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Menu inferior fixo com bordas arredondadas -->
+        <Border BackgroundColor="#242F40"
+          VerticalOptions="End"
+          HeightRequest="60"
+          StrokeThickness="0"
+          StrokeShape="RoundRectangle 20">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Ícone 1 -->
+
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" >
+
+                    <ImageButton Source="home.png" WidthRequest="40" HeightRequest="40"/>
+
+                </VerticalStackLayout>
+
+                <!-- Ícone 2 -->
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton Source="menu.png" Clicked="OnmenuClicked" WidthRequest="40" HeightRequest="40"/>
+                </VerticalStackLayout>
+
+                <!-- Ícone 3 -->
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton Source="perfil.png" Clicked="OnProfileClicked" WidthRequest="40" HeightRequest="40" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+
+
+    </Grid>
+</ContentPage>

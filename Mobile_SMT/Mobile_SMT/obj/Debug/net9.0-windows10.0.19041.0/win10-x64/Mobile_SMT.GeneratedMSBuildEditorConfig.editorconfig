@@ -1,0 +1,125 @@
+is_global = true
+build_property.TargetFramework = net9.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.19041.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Mobile_SMT
+build_property.ProjectDir = C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\Mobile_SMT\Mobile_SMT\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTAotOptimizerEnabled = true
+build_property.CsWinRTAotExportsEnabled = 
+build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptIn = 
+build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptOut = 
+build_property.CsWinRTCcwLookupTableGeneratorEnabled = true
+build_property.CsWinRTMergeReferencedActivationFactories = 
+build_property.CsWinRTAotWarningLevel = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/AgendamentoMed.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.AgendamentoMed.xaml
+build_metadata.AdditionalFiles.TargetPath = AgendamentoMed.xaml
+build_metadata.AdditionalFiles.RelativePath = AgendamentoMed.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Cadastro.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Cadastro.xaml
+build_metadata.AdditionalFiles.TargetPath = Cadastro.xaml
+build_metadata.AdditionalFiles.RelativePath = Cadastro.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Fim.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Fim.xaml
+build_metadata.AdditionalFiles.TargetPath = Fim.xaml
+build_metadata.AdditionalFiles.RelativePath = Fim.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Home.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Home.xaml
+build_metadata.AdditionalFiles.TargetPath = Home.xaml
+build_metadata.AdditionalFiles.RelativePath = Home.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Home2.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Home2.xaml
+build_metadata.AdditionalFiles.TargetPath = Home2.xaml
+build_metadata.AdditionalFiles.RelativePath = Home2.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/HoraAgendamento.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.HoraAgendamento.xaml
+build_metadata.AdditionalFiles.TargetPath = HoraAgendamento.xaml
+build_metadata.AdditionalFiles.RelativePath = HoraAgendamento.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Hospital.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Hospital.xaml
+build_metadata.AdditionalFiles.TargetPath = Hospital.xaml
+build_metadata.AdditionalFiles.RelativePath = Hospital.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/MedicoEspecialidade.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.MedicoEspecialidade.xaml
+build_metadata.AdditionalFiles.TargetPath = MedicoEspecialidade.xaml
+build_metadata.AdditionalFiles.RelativePath = MedicoEspecialidade.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Menu.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Menu.xaml
+build_metadata.AdditionalFiles.TargetPath = Menu.xaml
+build_metadata.AdditionalFiles.RelativePath = Menu.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/PagamentoEscolha.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.PagamentoEscolha.xaml
+build_metadata.AdditionalFiles.TargetPath = PagamentoEscolha.xaml
+build_metadata.AdditionalFiles.RelativePath = PagamentoEscolha.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Perfil.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Perfil.xaml
+build_metadata.AdditionalFiles.TargetPath = Perfil.xaml
+build_metadata.AdditionalFiles.RelativePath = Perfil.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Pix.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Pix.xaml
+build_metadata.AdditionalFiles.TargetPath = Pix.xaml
+build_metadata.AdditionalFiles.RelativePath = Pix.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/Mobile_SMT/Mobile_SMT/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Mobile_SMT.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml

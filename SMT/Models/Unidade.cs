@@ -1,35 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SMT.Models;
-
-public partial class Unidade
+namespace SMT.Models
 {
-    public int Idunidade { get; set; }
+    [Table("unidade")]
+    public class Unidade
+    {
+        [Key]
+        [Column("idunidade")]
+        public int IdUnidade { get; set; }
 
-    public string Nomeunidade { get; set; } = null!;
+        [Required]
+        [Column("nomeunidade")]
+        [MaxLength(20)]
+        public string NomeUnidade { get; set; } = null!;
 
-    public string Cepuni { get; set; } = null!;
+        [Required]
+        [Column("cepuni")]
+        [MaxLength(10)]
+        public string CepUni { get; set; } = null!;
 
-    public string Logradourouni { get; set; } = null!;
+        [Required]
+        [Column("logradourouni")]
+        [MaxLength(45)]
+        public string LogradouroUni { get; set; } = null!;
 
-    public string Numerouni { get; set; } = null!;
+        [Required]
+        [Column("numerouni")]
+        [MaxLength(6)]
+        public string NumeroUni { get; set; } = null!;
 
-    public string Bairrouni { get; set; } = null!;
+        [Required]
+        [Column("bairrouni")]
+        [MaxLength(20)]
+        public string BairroUni { get; set; } = null!;
 
-    public string Cidadeuni { get; set; } = null!;
+        [Required]
+        [Column("cidadeuni")]
+        [MaxLength(20)]
+        public string CidadeUni { get; set; } = null!;
 
-    public string Estadouni { get; set; } = null!;
+        [Required]
+        [Column("estadouni")]
+        [MaxLength(20)]
+        public string EstadoUni { get; set; } = null!;
 
-    public string Paisuni { get; set; } = null!;
-
-    public virtual ICollection<Administrador> Administradors { get; set; } = new List<Administrador>();
-
-    public virtual ICollection<Consultum> Consulta { get; set; } = new List<Consultum>();
-
-    public virtual ICollection<Especialidade> EspecialidadeIdespecialidades { get; set; } = new List<Especialidade>();
-
-    public virtual ICollection<Medico> MedicoCrmmeds { get; set; } = new List<Medico>();
-
-    public virtual ICollection<Medico> MedicoCrmmedsNavigation { get; set; } = new List<Medico>();
+        [Required]
+        [Column("paisuni")]
+        [MaxLength(20)]
+        public string PaisUni { get; set; } = null!;
+    }
 }

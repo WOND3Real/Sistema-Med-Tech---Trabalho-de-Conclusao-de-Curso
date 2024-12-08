@@ -2,13 +2,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using SMT.Models;
 
-public enum Genero
-{
-    Masculino,
-    Feminino,
-    Outro
-}
-
 [Table("paciente")]
 public partial class Paciente
 {
@@ -34,7 +27,7 @@ public partial class Paciente
 
     [Column("genero")]
     [Required(ErrorMessage = "O campo Gênero é obrigatório.")]
-    public Genero generoPaci { get; set; }
+    public string GeneroPaci { get; set; } = null!;
 
     [Column("emailpaci")]
     [Required(ErrorMessage = "O campo Email é obrigatório.")]
@@ -52,6 +45,15 @@ public partial class Paciente
     [Required(ErrorMessage = "O campo Senha é obrigatório.")]
     [StringLength(20, ErrorMessage = "A Senha deve ter no máximo 20 caracteres.")]
     public string SenhaPaci { get; set; } = null!;
+}
 
-    public virtual ICollection<Consultum> Consulta { get; set; } = new List<Consultum>();
+public class LoginRequest
+{
+    public string EmailPaci { get; set; }
+    public string Senhapaci { get; set; }
+}
+
+public class LoginResponse
+{
+    public string CpfPaciente { get; set; }
 }

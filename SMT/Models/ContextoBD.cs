@@ -15,121 +15,243 @@ public partial class ContextoBD : DbContext
 
     public virtual DbSet<Administrador> Administradores { get; set; }
 
-    public virtual DbSet<Atendente> Atendentes { get; set; }
-
-    public virtual DbSet<Consultum> Consulta { get; set; }
-
     public virtual DbSet<Especialidade> Especialidades { get; set; }
 
     public virtual DbSet<Medico> Medicos { get; set; }
 
     public virtual DbSet<Paciente> Pacientes { get; set; }
 
-    public virtual DbSet<Unidade> Unidades { get; set; }
+    public DbSet<ContadorData> ContadorData { get; set; }
+
+    public DbSet<ConsultaDetalhada> ConsultaDetalhada { get; set; }
+
+    public DbSet<Contribuinte> Contribuintes { get; set; } 
+
+    public DbSet<ConsultaPaciente> ConsultaPacientes { get; set; }
+
+    public DbSet<Unidade> Unidade { get; set; }
+
+    public DbSet<MedicoEspecialidade> MedicosEspecialidades { get; set; }
+
+    public DbSet<Consulta> Consulta { get; set; }
+
+    public DbSet<Atendente> Atendente { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("DefaultConnection");
+        if (!optionsBuilder.IsConfigured)
+        {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseNpgsql(connectionString).LogTo(Console.WriteLine, LogLevel.Information);;
+        }
         base.OnConfiguring(optionsBuilder);
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder
-            .HasPostgresEnum("dispodia", new[] { "Sim", "Não" })
-            .HasPostgresEnum("genero", new[] { "Masculino", "Feminino", "Outro" })
-            .HasPostgresEnum("statusconsulta", new[] { "Pendente", "Andamento", "Concluida", "Cancelada" });
+
+        // Configurações específicas para o modelo Atendente (opcional)
+        modelBuilder.Entity<Atendente>(entity =>
+        {
+            entity.HasKey(a => a.CTPAtend); // Define a chave primária
+            entity.Property(a => a.CTPAtend).HasColumnName("ctpsatend").HasMaxLength(15);
+            entity.Property(a => a.NomeAtend).HasColumnName("nomeatend").HasMaxLength(45);
+            entity.Property(a => a.SobrenomeAtend).HasColumnName("sobrenomeatend").HasMaxLength(45);
+            entity.Property(a => a.InicioTurnoAtend).HasColumnName("inicioturnoatend");
+            entity.Property(a => a.FimTurnoAtend).HasColumnName("fimturnoatend");
+            entity.Property(a => a.SenhaAtend).HasColumnName("senhaatend").HasMaxLength(20);
+        });
+
+        // Configuração da tabela 'consulta'
+        modelBuilder.Entity<Consulta>(entity =>
+        {
+            entity.ToTable("consulta");
+
+            // Chave primária
+            entity.HasKey(e => e.IdConsulta)
+                .HasName("consulta_pkey");
+
+            // Propriedades e configuração da chave primária com geração automática
+            entity.Property(e => e.IdConsulta)
+                .HasColumnName("idconsulta")
+                .ValueGeneratedOnAdd();
+
+            entity.Property(e => e.PacienteCpfPaci)
+                .HasColumnName("paciente_cpfpaci")
+                .HasMaxLength(14)
+                .IsRequired();
+
+            entity.Property(e => e.AtendenteCtpsatend)
+                .HasColumnName("atendente_ctpsatend")
+                .HasMaxLength(15)
+                .IsRequired();
+
+            entity.Property(e => e.MedicoCrmmed)
+                .HasColumnName("medico_crmmed")
+                .HasMaxLength(7)
+                .IsRequired();
+
+            entity.Property(e => e.UnidadeIdunidade)
+                .HasColumnName("unidade_idunidade")
+                .IsRequired();
+
+            entity.Property(e => e.EspecialidadeIdespecialidade)
+                .HasColumnName("especialidade_idespecialidade")
+                .IsRequired();
+
+            entity.Property(e => e.DataConsul)
+                .HasColumnName("dataconsul")
+                .IsRequired();
+
+            entity.Property(e => e.HoraConsul)
+                .HasColumnName("horaconsul")
+                .IsRequired();
+
+            entity.Property(e => e.StatusConsul)
+                .HasColumnName("statusconsul")
+                .HasMaxLength(15)
+                .IsRequired();
+
+            // Configuração das chaves estrangeiras
+            entity.HasOne<Paciente>()
+                .WithMany()
+                .HasForeignKey(e => e.PacienteCpfPaci)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            entity.HasOne<Atendente>()
+                .WithMany()
+                .HasForeignKey(e => e.AtendenteCtpsatend)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            entity.HasOne<Medico>()
+                .WithMany()
+                .HasForeignKey(e => e.MedicoCrmmed)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            entity.HasOne<Unidade>()
+                .WithMany()
+                .HasForeignKey(e => e.UnidadeIdunidade)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            entity.HasOne<Especialidade>()
+                .WithMany()
+                .HasForeignKey(e => e.EspecialidadeIdespecialidade)
+                .OnDelete(DeleteBehavior.NoAction);
+        });
+
+            modelBuilder.Entity<MedicoEspecialidade>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("medicosespecialidades");
+        });
+        
+            modelBuilder.Entity<Unidade>(entity =>
+            {
+                entity.ToTable("unidade");
+
+                entity.HasKey(e => e.IdUnidade)
+                      .HasName("unidade_pkey");
+
+                entity.Property(e => e.IdUnidade)
+                      .HasColumnName("idunidade")
+                      .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.NomeUnidade)
+                      .HasColumnName("nomeunidade")
+                      .HasMaxLength(20)
+                      .IsRequired();
+
+                entity.Property(e => e.CepUni)
+                      .HasColumnName("cepuni")
+                      .HasMaxLength(10)
+                      .IsRequired();
+
+                entity.Property(e => e.LogradouroUni)
+                      .HasColumnName("logradourouni")
+                      .HasMaxLength(45)
+                      .IsRequired();
+
+                entity.Property(e => e.NumeroUni)
+                      .HasColumnName("numerouni")
+                      .HasMaxLength(6)
+                      .IsRequired();
+
+                entity.Property(e => e.BairroUni)
+                      .HasColumnName("bairrouni")
+                      .HasMaxLength(20)
+                      .IsRequired();
+
+                entity.Property(e => e.CidadeUni)
+                      .HasColumnName("cidadeuni")
+                      .HasMaxLength(20)
+                      .IsRequired();
+
+                entity.Property(e => e.EstadoUni)
+                      .HasColumnName("estadouni")
+                      .HasMaxLength(20)
+                      .IsRequired();
+
+                entity.Property(e => e.PaisUni)
+                      .HasColumnName("paisuni")
+                      .HasMaxLength(20)
+                      .IsRequired();
+            });
+
+        // Configuração para a View ConsultaPaciente
+        modelBuilder.Entity<ConsultaPaciente>(entity =>
+        {
+            // Define a entidade como uma view e não uma tabela de dados
+            entity.HasNoKey();
+            entity.ToView("consultapaciente");
+        });
+
+        modelBuilder.Entity<Contribuinte>(entity =>
+        {
+            entity.HasNoKey();  // Indica que não há chave primária
+            entity.ToView("Contribuintes");  // Nome da view no banco de dados
+
+            // Verifique se o mapeamento está correto, por exemplo:
+            entity.Property(e => e.ConsultorioOuGuiche)
+                .HasColumnType("double precision");  // Define explicitamente o tipo da coluna
+        });
+
+
+
+        modelBuilder.Entity<ConsultaDetalhada>().HasNoKey();
+
+        modelBuilder.Entity<ContadorData>()
+            .HasNoKey();
 
         modelBuilder.Entity<Administrador>(entity =>
         {
-            entity.HasKey(e => new { e.Idadministrador, e.UnidadeIdunidade }).HasName("administrador_pkey");
+            // Corrigido a chave primária composta
+            entity.HasKey(e => new { e.IdAdministrador, e.UnidadeIdUnidade }).HasName("administrador_pkey");
 
             entity.ToTable("administrador");
 
-            entity.Property(e => e.Idadministrador).HasColumnName("idadministrador");
-            entity.Property(e => e.UnidadeIdunidade).HasColumnName("unidade_idunidade");
-            entity.Property(e => e.Nomeadm)
+            // Correção nos nomes das colunas e valores gerados automaticamente
+            entity.Property(e => e.IdAdministrador)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("idadministrador");
+
+            entity.Property(e => e.UnidadeIdUnidade)
+                .HasColumnName("unidade_idunidade");
+
+            entity.Property(e => e.NomeAdm)
                 .HasMaxLength(20)
                 .HasColumnName("nomeadm");
-            entity.Property(e => e.Senhaadm)
+
+            entity.Property(e => e.SenhaAdm)  // Corrigido para 'SenhaAdm' (de acordo com o nome das propriedades)
                 .HasMaxLength(20)
                 .HasColumnName("senhaadm");
-            entity.Property(e => e.Sobrenomeadm)
+
+            entity.Property(e => e.SobrenomeAdm)  // Corrigido para 'SobrenomeAdm'
                 .HasMaxLength(20)
                 .HasColumnName("sobrenomeadm");
-
-            entity.HasOne(d => d.UnidadeIdunidadeNavigation).WithMany(p => p.Administradors)
-                .HasForeignKey(d => d.UnidadeIdunidade)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("administrador_unidade_idunidade_fkey");
-        });
-
-        modelBuilder.Entity<Atendente>(entity =>
-        {
-            entity.HasKey(e => e.Ctpsatend).HasName("atendente_pkey");
-
-            entity.ToTable("atendente");
-
-            entity.Property(e => e.Ctpsatend)
-                .HasMaxLength(15)
-                .HasColumnName("ctpsatend");
-            entity.Property(e => e.Fimturnoatend).HasColumnName("fimturnoatend");
-            entity.Property(e => e.Inicioturnoatend).HasColumnName("inicioturnoatend");
-            entity.Property(e => e.Nomeatend)
-                .HasMaxLength(45)
-                .HasColumnName("nomeatend");
-            entity.Property(e => e.Senhaatend)
-                .HasMaxLength(20)
-                .HasColumnName("senhaatend");
-            entity.Property(e => e.Sobrenomeatend)
-                .HasMaxLength(45)
-                .HasColumnName("sobrenomeatend");
-        });
-
-        modelBuilder.Entity<Consultum>(entity =>
-        {
-            entity.HasKey(e => new { e.Idconsulta, e.PacienteCpfpaci, e.AtendenteCtpsatend, e.MedicoCrmmed, e.UnidadeIdunidade, e.EspecialidadeIdespecialidade }).HasName("consulta_pkey");
-
-            entity.ToTable("consulta");
-
-            entity.Property(e => e.Idconsulta).HasColumnName("idconsulta");
-            entity.Property(e => e.PacienteCpfpaci)
-                .HasMaxLength(14)
-                .HasColumnName("paciente_cpfpaci");
-            entity.Property(e => e.AtendenteCtpsatend)
-                .HasMaxLength(15)
-                .HasColumnName("atendente_ctpsatend");
-            entity.Property(e => e.MedicoCrmmed)
-                .HasMaxLength(7)
-                .HasColumnName("medico_crmmed");
-            entity.Property(e => e.UnidadeIdunidade).HasColumnName("unidade_idunidade");
-            entity.Property(e => e.EspecialidadeIdespecialidade).HasColumnName("especialidade_idespecialidade");
-            entity.Property(e => e.Dataconsul).HasColumnName("dataconsul");
-            entity.Property(e => e.Horaconsul).HasColumnName("horaconsul");
-
-            entity.HasOne(d => d.AtendenteCtpsatendNavigation).WithMany(p => p.Consulta)
-                .HasForeignKey(d => d.AtendenteCtpsatend)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("consulta_atendente_ctpsatend_fkey");
-
-            entity.HasOne(d => d.EspecialidadeIdespecialidadeNavigation).WithMany(p => p.Consulta)
-                .HasForeignKey(d => d.EspecialidadeIdespecialidade)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("consulta_especialidade_idespecialidade_fkey");
-
-            entity.HasOne(d => d.MedicoCrmmedNavigation).WithMany(p => p.Consulta)
-                .HasForeignKey(d => d.MedicoCrmmed)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("consulta_medico_crmmed_fkey");
-
-            entity.HasOne(d => d.PacienteCpfpaciNavigation).WithMany(p => p.Consulta)
-                .HasForeignKey(d => d.PacienteCpfpaci)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("consulta_paciente_cpfpaci_fkey");
-
-            entity.HasOne(d => d.UnidadeIdunidadeNavigation).WithMany(p => p.Consulta)
-                .HasForeignKey(d => d.UnidadeIdunidade)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("consulta_unidade_idunidade_fkey");
         });
 
         modelBuilder.Entity<Especialidade>(entity =>
@@ -139,7 +261,7 @@ public partial class ContextoBD : DbContext
             entity.ToTable("especialidade");
 
             entity.Property(e => e.Idespecialidade)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("idespecialidade");
             entity.Property(e => e.Nomeespec).HasColumnName("nomeespec");
         });
@@ -168,69 +290,6 @@ public partial class ContextoBD : DbContext
             entity.Property(e => e.Telefonemed)
                 .HasMaxLength(14)
                 .HasColumnName("telefonemed");
-
-            entity.HasMany(d => d.EspecialidadeIdespecialidades).WithMany(p => p.MedicoCrmmeds)
-                .UsingEntity<Dictionary<string, object>>(
-                    "RelMedEspec",
-                    r => r.HasOne<Especialidade>().WithMany()
-                        .HasForeignKey("EspecialidadeIdespecialidade")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("rel_med_espec_especialidade_idespecialidade_fkey"),
-                    l => l.HasOne<Medico>().WithMany()
-                        .HasForeignKey("MedicoCrmmed")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("rel_med_espec_medico_crmmed_fkey"),
-                    j =>
-                    {
-                        j.HasKey("MedicoCrmmed", "EspecialidadeIdespecialidade").HasName("rel_med_espec_pkey");
-                        j.ToTable("rel_med_espec");
-                        j.IndexerProperty<string>("MedicoCrmmed")
-                            .HasMaxLength(7)
-                            .HasColumnName("medico_crmmed");
-                        j.IndexerProperty<int>("EspecialidadeIdespecialidade").HasColumnName("especialidade_idespecialidade");
-                    });
-
-            entity.HasMany(d => d.UnidadeIdunidades).WithMany(p => p.MedicoCrmmeds)
-                .UsingEntity<Dictionary<string, object>>(
-                    "Disponibilidade",
-                    r => r.HasOne<Unidade>().WithMany()
-                        .HasForeignKey("UnidadeIdunidade")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("disponibilidade_unidade_idunidade_fkey"),
-                    l => l.HasOne<Medico>().WithMany()
-                        .HasForeignKey("MedicoCrmmed")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("disponibilidade_medico_crmmed_fkey"),
-                    j =>
-                    {
-                        j.HasKey("MedicoCrmmed", "UnidadeIdunidade").HasName("disponibilidade_pkey");
-                        j.ToTable("disponibilidade");
-                        j.IndexerProperty<string>("MedicoCrmmed")
-                            .HasMaxLength(7)
-                            .HasColumnName("medico_crmmed");
-                        j.IndexerProperty<int>("UnidadeIdunidade").HasColumnName("unidade_idunidade");
-                    });
-
-            entity.HasMany(d => d.UnidadeIdunidadesNavigation).WithMany(p => p.MedicoCrmmedsNavigation)
-                .UsingEntity<Dictionary<string, object>>(
-                    "RelMedUnidade",
-                    r => r.HasOne<Unidade>().WithMany()
-                        .HasForeignKey("UnidadeIdunidade")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("rel_med_unidade_unidade_idunidade_fkey"),
-                    l => l.HasOne<Medico>().WithMany()
-                        .HasForeignKey("MedicoCrmmed")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("rel_med_unidade_medico_crmmed_fkey"),
-                    j =>
-                    {
-                        j.HasKey("MedicoCrmmed", "UnidadeIdunidade").HasName("rel_med_unidade_pkey");
-                        j.ToTable("rel_med_unidade");
-                        j.IndexerProperty<string>("MedicoCrmmed")
-                            .HasMaxLength(7)
-                            .HasColumnName("medico_crmmed");
-                        j.IndexerProperty<int>("UnidadeIdunidade").HasColumnName("unidade_idunidade");
-                    });
         });
 
         modelBuilder.Entity<Paciente>(entity => 
@@ -252,11 +311,11 @@ public partial class ContextoBD : DbContext
                 .HasColumnName("sobrenomepaci");
 
             entity.Property(e => e.NascimentoPaci)
-                .HasColumnName("nascimentopaci");
+                .HasColumnName("nascimentopaci")
+                .HasConversion(new DateOnlyConverter());
 
-            entity.Property(e => e.generoPaci)
-                .HasConversion<string>()  // Converte o enum para string no banco de dados
-                .HasColumnName("genero");
+            entity.Property(e => e.GeneroPaci)
+                .HasColumnName("generopaci");
 
             entity.Property(e => e.EmailPaci)
                 .HasMaxLength(45)
@@ -270,63 +329,11 @@ public partial class ContextoBD : DbContext
                 .HasMaxLength(20)
                 .HasColumnName("senhapaci");
         });
+    }
 
-
-        modelBuilder.Entity<Unidade>(entity =>
-        {
-            entity.HasKey(e => e.Idunidade).HasName("unidade_pkey");
-
-            entity.ToTable("unidade");
-
-            entity.Property(e => e.Idunidade)
-                .ValueGeneratedNever()
-                .HasColumnName("idunidade");
-            entity.Property(e => e.Bairrouni)
-                .HasMaxLength(20)
-                .HasColumnName("bairrouni");
-            entity.Property(e => e.Cepuni)
-                .HasMaxLength(10)
-                .HasColumnName("cepuni");
-            entity.Property(e => e.Cidadeuni)
-                .HasMaxLength(20)
-                .HasColumnName("cidadeuni");
-            entity.Property(e => e.Estadouni)
-                .HasMaxLength(20)
-                .HasColumnName("estadouni");
-            entity.Property(e => e.Logradourouni)
-                .HasMaxLength(45)
-                .HasColumnName("logradourouni");
-            entity.Property(e => e.Nomeunidade)
-                .HasMaxLength(20)
-                .HasColumnName("nomeunidade");
-            entity.Property(e => e.Numerouni)
-                .HasMaxLength(6)
-                .HasColumnName("numerouni");
-            entity.Property(e => e.Paisuni)
-                .HasMaxLength(20)
-                .HasColumnName("paisuni");
-
-            entity.HasMany(d => d.EspecialidadeIdespecialidades).WithMany(p => p.UnidadeIdunidades)
-                .UsingEntity<Dictionary<string, object>>(
-                    "RelUniEspec",
-                    r => r.HasOne<Especialidade>().WithMany()
-                        .HasForeignKey("EspecialidadeIdespecialidade")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("rel_uni_espec_especialidade_idespecialidade_fkey"),
-                    l => l.HasOne<Unidade>().WithMany()
-                        .HasForeignKey("UnidadeIdunidade")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("rel_uni_espec_unidade_idunidade_fkey"),
-                    j =>
-                    {
-                        j.HasKey("UnidadeIdunidade", "EspecialidadeIdespecialidade").HasName("rel_uni_espec_pkey");
-                        j.ToTable("rel_uni_espec");
-                        j.IndexerProperty<int>("UnidadeIdunidade").HasColumnName("unidade_idunidade");
-                        j.IndexerProperty<int>("EspecialidadeIdespecialidade").HasColumnName("especialidade_idespecialidade");
-                    });
-        });
-
-        OnModelCreatingPartial(modelBuilder);
+    internal object SetFromSqlRaw(string v)
+    {
+        throw new NotImplementedException();
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

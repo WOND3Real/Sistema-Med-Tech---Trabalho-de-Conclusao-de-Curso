@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmtMAUI.Perfil"
+             xmlns:controls="clr-namespace:SmtMAUI.Controls">
+
+    <Grid Background="#ECECEC">
+        <!-- Cabeçalho -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <controls:Header Grid.Row="0" />
+
+        <!-- Conteúdo Principal -->
+        <Frame Grid.Row="1"
+               CornerRadius="15"
+               BorderColor="#AFAFAF"
+               BackgroundColor="#DED8E1"
+               Padding="15"
+               Margin="30,50,30,50"            
+               HasShadow="True">
+
+            <Grid ColumnSpacing="20" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Informações do Médico -->
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="20">
+                    <Label Text="Meu Perfil"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="Purple"
+                           HorizontalOptions="Center" />
+
+                    <!-- Foto de Perfil -->
+                    <Frame Padding="3"
+                           BackgroundColor="#FFFFFF"
+                           CornerRadius="100"
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           HorizontalOptions="Center">
+                        <Image Source="mano.png"
+                               Aspect="AspectFill"
+                               HeightRequest="100"
+                               WidthRequest="100" />
+                    </Frame>
+
+                    <!-- Informações Pessoais -->
+                    <Grid ColumnSpacing="10" RowSpacing="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Nome -->
+                        <Label Text="Nome:" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"
+                               FontSize="16" TextColor="Purple" />
+                        <Entry x:Name="NomeAdm"  TextColor="Black" Grid.Row="0" Grid.Column="1"
+                               BackgroundColor="White" FontSize="14" />
+
+                        <!-- Telefone -->
+                        <Label Text="Telefone:" FontAttributes="Bold" Grid.Row="1" Grid.Column="0"
+                               FontSize="16" TextColor="Purple" />
+                        <Entry Text="(71)9999-9999" TextColor="Black" Grid.Row="1" Grid.Column="1"
+                               BackgroundColor="White" FontSize="14" />
+
+                        <!-- Especialidade -->
+                        <Label Text="Especialidade:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"
+                               FontSize="16" TextColor="Purple" />
+                        <Entry Text="N/A" TextColor="Black" Grid.Row="2" Grid.Column="1"
+                               BackgroundColor="White" FontSize="14" />
+
+                        <!-- Função -->
+                        <Label Text="Função:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"
+                               FontSize="16" TextColor="Purple" />
+                        <Entry Text="Administrador" TextColor="Black" Grid.Row="3" Grid.Column="1"
+                               BackgroundColor="White" FontSize="14" />
+
+                        <!-- Email -->
+                        <Label Text="Email:" FontAttributes="Bold" Grid.Row="4" Grid.Column="0"
+                               FontSize="16" TextColor="Purple" />
+                        <Entry Text="email.adm@email.com" TextColor="Black" Grid.Row="4" Grid.Column="1"
+                               BackgroundColor="White" FontSize="14" />
+
+                        <!-- Senha -->
+                        <Label Text="Senha:" FontAttributes="Bold" Grid.Row="5" Grid.Column="0"
+                               FontSize="16" TextColor="Purple" />
+                        <Entry Text="###########" TextColor="Black" Grid.Row="5" Grid.Column="1"
+                               BackgroundColor="White" FontSize="14" />
+
+                        <!-- CRM -->
+                        <Label Text="Identificador:" FontAttributes="Bold" Grid.Row="6" Grid.Column="0"
+                               FontSize="16" TextColor="Purple" />
+                        <Entry x:Name="IdAdministrador" Text="" TextColor="Black" Grid.Row="6" Grid.Column="1"
+                               BackgroundColor="White" FontSize="14" />
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- Dias Disponíveis -->
+                <Frame BorderColor="Black" Grid.Row="0" Grid.Column="1"
+                       BackgroundColor="White"
+                       CornerRadius="10"
+                       Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                     
+                        <Label Text="Dias disponíveis"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#333333" />
+                        <Label Text="DOM / SEG / TER / QUA / QUI / SEX / SAB"
+                               FontSize="16"
+                               TextColor="#555555" />
+                        <Label Text="Unidade: Hospital Ana Nery"
+                               FontSize="14"
+                               TextColor="Gray" />
+                        <Label Text="Endereço: R. Saldanha Marinho, S/N, Salvador - BA"
+                               FontSize="14"
+                               TextColor="Gray" />
+
+                     <ImageButton
+                                Source="adicionar.png"
+                                Padding="10"
+                                CornerRadius="10"
+                                HeightRequest="75"
+                                WidthRequest="75"
+                                HorizontalOptions="End" 
+                                VerticalOptions="Center"
+                                />                   
+                    </VerticalStackLayout>
+                    
+                </Frame>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

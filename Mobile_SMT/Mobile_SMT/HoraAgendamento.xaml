@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.HoraAgendamento"
+             Title="HoraAgendamento">
+
+    <!-- Fundo com gradiente -->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1.7">
+            <GradientStop Color="#FFA234" Offset="0.00164" />
+            <GradientStop Color="#54027B" Offset="0.06" />
+            <GradientStop Color="White" Offset="0.328" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+
+        <!-- Botão de voltar -->
+        <Button x:Name="BackButton"
+                BackgroundColor="#47FFFFFF"
+                CornerRadius="25"
+                WidthRequest="45"
+                HeightRequest="45"
+                ImageSource="black_icon.png"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Margin="15,20,0,0"
+                Clicked="OnBackButtonClicked" />
+
+        <!-- Título -->
+        <Label Text="Escolha a melhor data para a sua consulta"
+               TextColor="White"
+               HorizontalTextAlignment="Center"
+               Margin="0,65,0,0"
+               FontAttributes="Bold"
+               FontSize="15" />
+
+        <!-- Card principal -->
+        <Frame HeightRequest="710"
+               BackgroundColor="White"
+               BorderColor="White"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="End"
+               Padding="20"
+               CornerRadius="30">
+
+            <VerticalStackLayout Spacing="10">
+
+                <!-- Mês atual -->
+                <Label Text="Dezembro"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Title"
+                       TextColor="#8A2BE2" />
+
+                <!-- Grid do calendário -->
+                <Grid x:Name="CalendarGrid"
+                      RowSpacing="5"
+                      ColumnSpacing="5"
+                      Padding="10">
+                    <!-- Conteúdo dinâmico será gerado no código-behind -->
+                </Grid>
+
+                <!-- Indicador de horários disponíveis -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" VerticalOptions="Center">
+                    <Image Source="relogiotres.png" 
+                           WidthRequest="25"
+                           HeightRequest="25"
+                           HorizontalOptions="Center" />
+                    <Label Text="Horários disponíveis"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           FontSize="20"
+                           TextColor="#242F40"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <!-- Grade de horários -->
+                <Grid RowSpacing="10" ColumnSpacing="10" Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Botões de horários -->
+                    <Button Text="09:30"
+                            Grid.Row="0" Grid.Column="0"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="11:00"
+                            Grid.Row="0" Grid.Column="1"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="13:00"
+                            Grid.Row="0" Grid.Column="2"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="14:30"
+                            Grid.Row="1" Grid.Column="0"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="15:00"
+                            Grid.Row="1" Grid.Column="1"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="16:30"
+                            Grid.Row="1" Grid.Column="2"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="17:00"
+                            Grid.Row="2" Grid.Column="0"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="17:30"
+                            Grid.Row="2" Grid.Column="1"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                    <Button Text="18:00"
+                            Grid.Row="2" Grid.Column="2"
+                            Clicked="OnDateButtonClicked"
+                            CommandParameter="{Binding Source={x:Reference HoraAgendamento}, Path=SelectedDate}"
+                            BackgroundColor="White"
+                            BorderColor="#FFA234"
+                            TextColor="#242F40"
+                            BorderWidth="2"
+                            CornerRadius="20"
+                            WidthRequest="100"
+                            HeightRequest="37" />
+                </Grid>
+
+                <!-- Botão de confirmação -->
+                <Button Text="Confirmar"
+                        BackgroundColor="#8A2BE2"
+                        TextColor="White"
+                        WidthRequest="340"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="10"
+                        FontSize="25"
+                        FontAttributes="Bold"
+                        Margin="0,15,0,15"
+                        Clicked="OnAgendarButtonClicked" />
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

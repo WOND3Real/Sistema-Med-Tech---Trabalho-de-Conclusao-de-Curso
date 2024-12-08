@@ -20,7 +20,8 @@
 
             
             
-                <Frame Background="#FFA234"
+                <Frame
+                       Background="#FFA234"
                        WidthRequest="175" 
                        HeightRequest="100"
                        Grid.Row="0"
@@ -28,7 +29,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="217" FontSize="24" TextColor="White"/>
+                        <Label x:Name="NumConsultas" Text="" FontSize="24" TextColor="White"/>
                         <Label Text="Consultas Cadastradas" FontSize="12" TextColor="White"/>
                     </StackLayout>
 
@@ -41,7 +42,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="20" FontSize="24" TextColor="White"/>
+                        <Label x:Name="NumContribuentes" Text="" FontSize="24" TextColor="White"/>
                         <Label Text="Contribuintes Cadastrados" FontSize="11"  TextColor="White"/>
                     </StackLayout>
 
@@ -54,7 +55,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="150" FontSize="24" TextColor="White"/>
+                        <Label x:Name="NumConcluidas" Text="" FontSize="24" TextColor="White"/>
                         <Label Text="Consultas Concluidas" FontSize="12" TextColor="White"/>
                     </StackLayout>
 
@@ -67,7 +68,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="0" FontSize="24" TextColor="White"/>
+                        <Label Text="0" FontSize="0" TextColor="White"/>
                         <Label Text="Consultas Remarcadas" FontSize="12" TextColor="White"/>
                     </StackLayout>
                 </Frame>
@@ -80,7 +81,7 @@
 
                     >
                     <StackLayout>
-                        <Label Text="217" FontSize="24" TextColor="White"/>
+                        <Label x:Name="NumCanceldas" Text="" FontSize="24" TextColor="White"/>
                         <Label Text="Consultas Canceladas" FontSize="12" TextColor="White"/>
                     </StackLayout>
 

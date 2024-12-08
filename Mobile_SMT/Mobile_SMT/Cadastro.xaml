@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.Cadastro"
+             BackgroundColor="Transparent"
+             Title="Cadastro">
+    
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#FFA234" Offset="0.0" />
+            <GradientStop Color="#54027B" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid Padding="20">
+        <VerticalStackLayout Spacing="10">
+
+            <Image Source="logo.png" 
+           HeightRequest="100" 
+           HorizontalOptions="Center" />
+
+
+            <HorizontalStackLayout Spacing="10">
+                <Border Stroke="#FFFFFF" 
+            StrokeThickness="1" 
+            BackgroundColor="#47FFFFFF" 
+            StrokeShape="RoundRectangle 10"
+            WidthRequest="180">
+                    <Entry Placeholder="Nome" 
+               x:Name="FirstNameEntry" 
+               TextColor="White" 
+               BackgroundColor="Transparent" 
+               PlaceholderColor="White"/>
+                </Border>
+
+                <Border Stroke="#FFFFFF" 
+            StrokeThickness="1" 
+            BackgroundColor="#47FFFFFF" 
+            StrokeShape="RoundRectangle 10"
+            WidthRequest="180">
+
+                    <Entry Placeholder="Sobrenome" 
+               x:Name="LastNameEntry" 
+               TextColor="White" 
+               BackgroundColor="Transparent"
+               PlaceholderColor="White"/>
+                </Border>
+            </HorizontalStackLayout>
+
+
+
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                    BackgroundColor="#47FFFFFF" 
+                    StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="Telefone" 
+                       x:Name="PhoneEntry" 
+                       TextColor="White" 
+                       BackgroundColor="Transparent" 
+                       PlaceholderColor="White"/>
+            </Border>
+
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                    BackgroundColor="#47FFFFFF" 
+                    StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="CPF" 
+                       x:Name="CpfEntry" 
+                       TextColor="White" 
+                       BackgroundColor="Transparent" 
+                       PlaceholderColor="White"/>
+            </Border>
+
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                    BackgroundColor="#47FFFFFF" 
+                    StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="Gênero" 
+                       x:Name="GenderEntry" 
+                       TextColor="White" 
+                       BackgroundColor="Transparent" 
+                       PlaceholderColor="White"/>
+            </Border>
+
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                    BackgroundColor="#47FFFFFF" 
+                    StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="Email" 
+                       x:Name="EmailEntry" 
+                       TextColor="White" 
+                       BackgroundColor="Transparent" 
+                       PlaceholderColor="White"/>
+            </Border>
+
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                    BackgroundColor="#47FFFFFF" 
+                    StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="Senha" 
+                       IsPassword="True" 
+                       x:Name="RegisterPasswordEntry" 
+                       TextColor="White" 
+                       BackgroundColor="Transparent" 
+                       PlaceholderColor="White"/>
+            </Border>
+
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                    BackgroundColor="#47FFFFFF" 
+                    StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="Confirmar Senha" 
+                       IsPassword="True" 
+                       x:Name="ConfirmPasswordEntry" 
+                       TextColor="White" 
+                       BackgroundColor="Transparent" 
+                       PlaceholderColor="White"/>
+            </Border>
+            <Button Text="Registrar" Clicked="OnRegisterClicked" BackgroundColor="#54AAE8" 
+                TextColor="White" 
+                WidthRequest="300"
+                HeightRequest="69"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                CornerRadius="10" 
+                FontSize="30"
+                FontAttributes="Bold"
+             />
+
+            <Label Text="Ou" 
+                   FontSize="15" 
+                   HorizontalOptions="Center" 
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+
+            <Image Source="continuar_com.png"
+                   HeightRequest="80" 
+                   HorizontalOptions="Center"/>
+
+            <Label Text="Já tem uma conta? " 
+                   FontSize="20" 
+                   TextColor="White" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"/>
+
+            <Label HorizontalOptions="Center" TextColor="White">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Login!"
+                              TextColor="LightBlue"
+                              FontAttributes="Bold" 
+                              GestureRecognizers="{TapGestureRecognizer Tapped='OnLoginTapped'}"
+                              FontSize="20"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

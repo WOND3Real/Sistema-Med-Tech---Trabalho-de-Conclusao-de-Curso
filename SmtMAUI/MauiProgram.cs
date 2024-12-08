@@ -7,6 +7,11 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
+		builder.Services.AddSingleton<HttpClient>(); // Adiciona HttpClient
+		builder.Services.AddSingleton<Login>(); // Adiciona LoginService
+        builder.Services.AddSingleton<ListaConsulta>();
+        builder.Services.AddSingleton<CadastroContribuintes>();
+        builder.Services.AddSingleton<PainelMedico>();
 		builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>

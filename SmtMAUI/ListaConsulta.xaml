@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:SmtMAUI.Controls"
@@ -38,7 +37,7 @@
                BackgroundColor="#DED8E1"
                Padding="10"
                HasShadow="True"
-               Margin="10">
+               Margin="30,50,30,50"> 
 
             <!-- Layout para Tabela e Botão -->
             <Grid>
@@ -49,34 +48,40 @@
 
                 <!-- Tabela -->
                 <CollectionView x:Name="ConsultasCollectionView"
+                                ItemsSource="{Binding Consultas}"
                                 Grid.Row="0"
                                 VerticalOptions="FillAndExpand">
 
                     <CollectionView.Header>
-                        <Grid ColumnSpacing="1" BackgroundColor="#FFFFFF" Padding="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Código de Consulta" Style="{StaticResource HeaderLabelStyle}" Grid.Column="0"/>
-                            <Label Text="Data" Style="{StaticResource HeaderLabelStyle}" Grid.Column="1"/>
-                            <Label Text="Hora" Style="{StaticResource HeaderLabelStyle}" Grid.Column="2"/>
-                            <Label Text="CPF do Paciente" Style="{StaticResource HeaderLabelStyle}" Grid.Column="3"/>
-                            <Label Text="Especialidade" Style="{StaticResource HeaderLabelStyle}" Grid.Column="4"/>
-                            <Label Text="Consultório" Style="{StaticResource HeaderLabelStyle}" Grid.Column="5"/>
-                            <Label Text="Status" Style="{StaticResource HeaderLabelStyle}" Grid.Column="6"/>
-                        </Grid>
+                        <Frame BackgroundColor="White"
+                               CornerRadius="10"
+                               BorderColor="Black"
+                               Padding="15">
+                            <Grid ColumnSpacing="5"> <!-- Aumentei o espaçamento entre as colunas -->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Código" Style="{StaticResource HeaderLabelStyle}" Grid.Column="0"/>
+                                <Label Text="Data" Style="{StaticResource HeaderLabelStyle}" Grid.Column="1"/>
+                                <Label Text="Hora" Style="{StaticResource HeaderLabelStyle}" Grid.Column="2"/>
+                                <Label Text="CPF Paciente" Style="{StaticResource HeaderLabelStyle}" Grid.Column="3"/>
+                                <Label Text="Especialidade" Style="{StaticResource HeaderLabelStyle}" Grid.Column="4"/>
+                                <Label Text="Status" Style="{StaticResource HeaderLabelStyle}" Grid.Column="5"/>
+                                <Label Text="Consultorio" Style="{StaticResource HeaderLabelStyle}" Grid.Column="6"/>
+                            </Grid>
+                        </Frame>
                     </CollectionView.Header>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame CornerRadius="10" Padding="5" Margin="0,3,0,3" HasShadow="True" BackgroundColor="White">
-                                <Grid ColumnSpacing="1">
+                            <Frame Padding="15" HasShadow="True" BackgroundColor="White" BorderColor="Black">
+                                <Grid ColumnSpacing="10"> 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*" />
                                         <ColumnDefinition Width="2*" />
@@ -86,30 +91,18 @@
                                         <ColumnDefinition Width="2*" />
                                         <ColumnDefinition Width="2*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding CodigoConsulta}" Style="{StaticResource CellLabelStyle}" Grid.Column="0"/>
-                                    <Label Text="{Binding Data}" Style="{StaticResource CellLabelStyle}" Grid.Column="1"/>
-                                    <Label Text="{Binding Hora}" Style="{StaticResource CellLabelStyle}" Grid.Column="2"/>
-                                    <Label Text="{Binding CPFPaciente}" Style="{StaticResource CellLabelStyle}" Grid.Column="3"/>
-                                    <Label Text="{Binding Especialidade}" Style="{StaticResource CellLabelStyle}" Grid.Column="4"/>
-                                    <Label Text="{Binding Consultorio}" Style="{StaticResource CellLabelStyle}" Grid.Column="5"/>
-                                    <Label Text="{Binding Status}" Style="{StaticResource CellLabelStyle}" Grid.Column="6"/>
+                                    <Label Text="{Binding IdConsulta}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="0" Padding="5"/>
+                                    <Label Text="{Binding DataConsultaFormatada}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="1" Padding="5"/>
+                                    <Label Text="{Binding HoraConsultaFormatada}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="2" Padding="5"/>
+                                    <Label Text="{Binding CpfPaciente}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="3" Padding="5"/>
+                                    <Label Text="{Binding Especialidade}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="4" Padding="5"/>
+                                    <Label Text="{Binding StatusConsulta}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="5" Padding="5"/>
+                                    <Label Text="{Binding Consultorio}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="6" Padding="5"/>
                                 </Grid>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
-                <!-- Botão no canto inferior direito -->
-                <ImageButton
-                    Grid.Row="1"
-                    Padding="10"
-                    Source="adicionar.png"
-                    HorizontalOptions="End"
-                    VerticalOptions="Center"
-                    HeightRequest="75"
-                    WidthRequest="75"
-                    Clicked="OnAdicionarContribuinteClicked" 
-                    />
             </Grid>
         </Frame>
     </Grid>

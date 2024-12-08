@@ -37,41 +37,47 @@
                BackgroundColor="#DED8E1"
                Padding="10"
                HasShadow="True"
-               Margin="10">
-
+               Margin="30,50,30,50"            
+        >
             <!-- Layout para Tabela e Botão -->
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" /> <!-- Tabela -->
-                    <RowDefinition Height="50" /> 
+                    <RowDefinition Height="50" /> <!-- Botão -->
                 </Grid.RowDefinitions>
 
                 <!-- Tabela -->
                 <CollectionView x:Name="ContribuintesCollectionView"
+                                ItemsSource="{Binding Contribuintes}"  
                                 Grid.Row="0"
                                 VerticalOptions="FillAndExpand">
 
                     <CollectionView.Header>
-                        <Grid ColumnSpacing="1" BackgroundColor="#FFFFFF" Padding="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Nome" Style="{StaticResource HeaderLabelStyle}" Grid.Column="0"/>
-                            <Label Text="Ocupação" Style="{StaticResource HeaderLabelStyle}" Grid.Column="1"/>
-                            <Label Text="Identificador" Style="{StaticResource HeaderLabelStyle}" Grid.Column="2"/>
-                            <Label Text="Consultório/Guichê" Style="{StaticResource HeaderLabelStyle}" Grid.Column="3"/>
-                            <Label Text="Especialidade" Style="{StaticResource HeaderLabelStyle}" Grid.Column="4"/>
-                        </Grid>
+                        <Frame BackgroundColor="White"
+                               CornerRadius="10"
+                               BorderColor="Black"
+                               Padding="15">
+                            <Grid ColumnSpacing="5"> <!-- Aumentei o espaçamento entre as colunas -->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Nome" Style="{StaticResource HeaderLabelStyle}" Grid.Column="0"/>
+                                <Label Text="Ocupação" Style="{StaticResource HeaderLabelStyle}" Grid.Column="1"/>
+                                <Label Text="Identificador" Style="{StaticResource HeaderLabelStyle}" Grid.Column="2"/>
+                                <Label Text="Consultório/Guichê" Style="{StaticResource HeaderLabelStyle}" Grid.Column="3"/>
+                                <Label Text="Especialidade" Style="{StaticResource HeaderLabelStyle}" Grid.Column="4"/>
+                            </Grid>
+                        </Frame>
                     </CollectionView.Header>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame CornerRadius="10" Padding="5" Margin="0,3,0,3" HasShadow="True" BackgroundColor="White">
-                                <Grid ColumnSpacing="1">
+                            <Frame Padding="15" HasShadow="True" BackgroundColor="White" BorderColor="Black">
+                                <Grid ColumnSpacing="10"> <!-- Aumentei o espaçamento entre as colunas -->
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*" />
                                         <ColumnDefinition Width="2*" />
@@ -79,11 +85,11 @@
                                         <ColumnDefinition Width="2*" />
                                         <ColumnDefinition Width="2*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding Nome}" Style="{StaticResource CellLabelStyle}" Grid.Column="0"/>
-                                    <Label Text="{Binding Ocupacao}" Style="{StaticResource CellLabelStyle}" Grid.Column="1"/>
-                                    <Label Text="{Binding Identificador}" Style="{StaticResource CellLabelStyle}" Grid.Column="2"/>
-                                    <Label Text="{Binding GuicheConsultorio}" Style="{StaticResource CellLabelStyle}" Grid.Column="3"/>
-                                    <Label Text="{Binding Especialidade}" Style="{StaticResource CellLabelStyle}" Grid.Column="4"/>
+                                    <Label Text="{Binding Nome}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="0" Padding="5"/>
+                                    <Label Text="{Binding Ocupacao}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="1" Padding="5"/>
+                                    <Label Text="{Binding Identificador}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="2" Padding="5"/>
+                                    <Label Text="{Binding ConsultorioOuGuiche, StringFormat='{0:F0}'}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="3" Padding="5"/>
+                                    <Label Text="{Binding Especialidade}" TextColor="Black" Style="{StaticResource CellLabelStyle}" Grid.Column="4" Padding="5"/>
                                 </Grid>
                             </Frame>
                         </DataTemplate>

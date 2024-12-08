@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.Pix"
+             Title="Pix">
+    <VerticalStackLayout Spacing="15">
+
+
+        <!-- Botão Voltar -->
+        <Button x:Name="BackButton"
+        BackgroundColor="#98A2B1"
+        CornerRadius="25"
+        WidthRequest="45"
+        HeightRequest="45"
+        ImageSource="black_icon.png"
+        HorizontalOptions="Start"
+        VerticalOptions="Start"
+        Margin="15,2,0,0"
+        Clicked="OnBackButtonClicked"
+        />
+
+        
+        <Image Source="pixicon.png"
+               WidthRequest="300"
+               HeightRequest="90"
+               HorizontalOptions="Center" />
+
+        <Label Text="Valor a pagar: R$00,00"
+               TextColor="#242F40"
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+                 Margin="0,20,0,0" />
+
+        <Label Text="Escaneie O QRCODE"
+               TextColor="#242F40"
+               FontSize="15"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"/>
+
+        <Image Source="qrcode.png"
+               WidthRequest="170"
+               HeightRequest="170"
+               HorizontalOptions="Center" />
+
+        <HorizontalStackLayout Spacing="10" Margin="10,0,0,0" VerticalOptions="Center" HorizontalOptions="Center">
+            <!-- Border para o código Pix -->
+            <Border BackgroundColor="White"
+            HeightRequest="50"
+            Stroke="#98A2B1"
+            StrokeThickness="1.5" 
+            StrokeShape="RoundRectangle 10">
+
+                <HorizontalStackLayout Spacing="5" Padding="5">
+                    <!-- Código Pix -->
+                    <Label Text="123e4567-e89b-12d3-a456-426614174000..."
+                   TextColor="#242F40"
+                   FontSize="12"
+                   VerticalOptions="Center"
+                   HorizontalOptions="StartAndExpand" />
+
+                    <!-- Botão de copiar código Pix -->
+                    <Button Text="Copiar código"
+                    TextColor="White"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    BackgroundColor="#59ACFF"
+                    WidthRequest="120"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    Clicked="copiar"/>
+                </HorizontalStackLayout>
+            </Border>
+        </HorizontalStackLayout>
+
+
+        <Image Source="valor.png" 
+       WidthRequest="250"/>
+
+        <Button
+            Text="     Concluido     "
+            FontAttributes="Bold"
+            BackgroundColor="#8A2BE2"
+            FontSize="23"
+            HorizontalOptions="CenterAndExpand"
+            Clicked="prximaPag">
+            
+        </Button>
+
+
+    </VerticalStackLayout>
+</ContentPage>

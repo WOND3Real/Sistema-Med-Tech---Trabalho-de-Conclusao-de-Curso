@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.Hospital"
+             Title="Hospital"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1.78">
+            <GradientStop Color="#FFA234" Offset="0.00164"/>
+            <GradientStop Color="#54027B" Offset="0.145"/>
+            <GradientStop Color="White" Offset="0.328"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+        <!-- Botão Voltar -->
+        <Button x:Name="BackButton"
+                BackgroundColor="#47FFFFFF"
+                BorderColor="White"
+                CornerRadius="25"
+                WidthRequest="45"
+                HeightRequest="45"
+                ImageSource="black_icon.png"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Margin="15,20,0,0"
+                Clicked="OnBackButtonClicked"/>
+
+        <!-- Barra de Pesquisa -->
+        <Border Stroke="#FFFFFF"
+                StrokeThickness="1.5" 
+                BackgroundColor="Transparent" 
+                StrokeShape="RoundRectangle 10"
+                WidthRequest="330"
+                VerticalOptions="Start"
+                Padding="10,0"
+                Margin="0,90,0,0">
+            <Grid>
+                <Image Source="procurar.png" 
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" 
+                WidthRequest="20" 
+                HeightRequest="20"/>
+                <Entry Placeholder="Procurar Hospital . . ." 
+                x:Name="SearchEntry"
+                TextColor="White"
+                BackgroundColor="Transparent"
+                VerticalOptions="Center" 
+                HorizontalOptions="FillAndExpand"
+                Margin="30,0,0,0"
+                PlaceholderColor="White"
+                FontAttributes="Bold"
+                />
+            </Grid>
+        </Border>
+
+        <!-- "Div" personalizada -->
+        <Frame
+             HeightRequest="620"
+             Background="White"
+             BorderColor="White"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="End"
+             Padding="20" 
+             CornerRadius="30">
+
+            <!-- Conteúdo da "Div" -->
+            <VerticalStackLayout>
+
+                <!-- Cabeçalho -->
+                <HorizontalStackLayout Spacing="5"
+                       HorizontalOptions="Center" 
+                       VerticalOptions="CenterAndExpand">
+                    <Image Source="hospital.png" 
+                           VerticalOptions="Center" 
+                           WidthRequest="50"
+                           HeightRequest="40"
+                           InputTransparent="True"/>
+
+                    <Label Text="Lista de Hospitais"
+                           FontAttributes="Bold"
+                           TextColor="#242F40"
+                           FontSize="30"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <ScrollView>
+                    <!-- Lista de Hospitais -->
+                    <CollectionView ItemsSource="{Binding Unidades}" Margin="10,90,10,10">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10" Margin="5" BackgroundColor="#D9D9D9" CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <HorizontalStackLayout>
+                                            <!-- Imagem ilustrativa -->
+                                            <Image Source="hospital.png"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Start"
+                                                WidthRequest="50"
+                                                HeightRequest="50"
+                                                Margin="5"/>
+                                        
+                                            <VerticalStackLayout>
+                                                <Label Text="{Binding NomeUnidade}" FontAttributes="Bold" FontSize="20" TextColor="#242F40"/>
+                                                <HorizontalStackLayout>
+                                                    <Label Text="{Binding LogradouroUni}" FontSize="12" TextColor="#242F40"/>
+                                                    <Label Text=", " FontSize="12" TextColor="#242F40"/>
+                                                    <Label Text="{Binding BairroUni}" FontSize="12" TextColor="#242F40"/>
+                                                    <Label Text=", " FontSize="12" TextColor="#242F40"/>
+                                                    <Label Text="{Binding CidadeUni}" FontSize="12" TextColor="#242F40"/>
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                        <!-- Botão Agendar -->
+                                        <Button BackgroundColor="#8A2BE2"
+                                                Text="Agendar"
+                                                FontAttributes="Bold"
+                                                CornerRadius="15"
+                                                FontSize="20"
+                                                Clicked="OnScheduleButtonClicked"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </VerticalStackLayout>
+        </Frame>    
+    </Grid>
+</ContentPage>

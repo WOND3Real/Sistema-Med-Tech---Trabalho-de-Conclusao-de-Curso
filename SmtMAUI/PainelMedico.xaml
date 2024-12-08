@@ -4,108 +4,152 @@
              x:Class="SmtMAUI.PainelMedico"
              xmlns:controls="clr-namespace:SmtMAUI.Controls">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="HeaderLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Purple" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="14" />
-            </Style>
-
-            <Style x:Key="CellLabelStyle" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="12" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <Grid Background="#ECECEC">
-        <!-- Header -->
+        <!-- Cabeçalho -->
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <controls:Header Grid.Row="0" />
 
-        <!-- Área principal -->
+        
+
+        <!-- Conteúdo Principal -->
         <Frame Grid.Row="1"
                CornerRadius="15"
-               BorderColor="#FFC0A8A8"
+               BorderColor="#AFAFAF"
                BackgroundColor="#DED8E1"
-               Padding="10"
-               HasShadow="True"
-               Margin="10">
-            <VerticalStackLayout Spacing="10">
+               Padding="15"
+               Margin="30,50,30,50"            
+               HasShadow="True">
 
-                <!-- Título da consulta -->
-                <Grid ColumnSpacing="5" Padding="5">
+            <VerticalStackLayout Spacing="15">
+                <!-- Cabeçalho da Tabela -->
+                <Frame BackgroundColor="White"
+                    BorderColor="Black"
+                    CornerRadius="10"
+                    >
+                <Grid ColumnSpacing="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
                     <Label Text="1 Consulta(s)"
-                           Style="{StaticResource HeaderLabelStyle}"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="Purple"
+                           HorizontalOptions="Center" 
                            Grid.Column="0" />
-                    <Label Text="Data: 00/00/0000"
-                           Style="{StaticResource HeaderLabelStyle}"
-                           Grid.Column="1"
-                           HorizontalOptions="End" />
+                    <Label x:Name="DataConsultaFormatada" FontSize="30" FontAttributes="Bold" TextColor="Purple" HorizontalOptions="Center" Grid.Column="1" />
                 </Grid>
+                </Frame>
 
-                <!-- Informações do paciente e motivo da consulta -->
-                <Frame BackgroundColor="White" CornerRadius="10" Padding="10">
-                    <Grid RowSpacing="10" ColumnSpacing="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                <!-- Linha de Informações da Consulta -->
+                <Frame BackgroundColor="White"
+                       CornerRadius="10"
+                       BorderColor="Black"
+                       Padding="10">
+                    <Grid ColumnSpacing="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
-
-                        <!-- Informações do paciente -->
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="5">
-                            <Image Source="mano.png"
-                                   WidthRequest="80"
-                                   HeightRequest="80"
-                                   HorizontalOptions="Start" />
-                            <Label Text="Paciente:"
-                                   FontAttributes="Bold"
-                                   FontSize="16"
-                                   />
-                            <Label Text="Nome: Fabio Santos" FontSize="14" TextColor="Black" />
-                            <Label Text="Nascimento: 15/06/2000" FontSize="14" TextColor="Black" />
-                            <Label Text="CPF: 000.000.000-00" FontSize="14" TextColor="Black" />
-                            <Label Text="Sexo: Masculino" FontSize="14" TextColor="Black" />
-                        </VerticalStackLayout>
-
-                        <!-- Motivo da consulta -->
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="5">
-                            <Label Text="Motivo da Consulta:" FontAttributes="Bold" FontSize="16"  />
-                            <Editor Text="Nos últimos dias, venho sentindo uma dor persistente na região do abdômen, principalmente após as refeições. Além disso, tenho notado um desconforto constante, acompanhado de náuseas e uma sensação de inchaço. Também observei uma mudança nos meus hábitos intestinais, com episódios de constipação alternados com diarreia."
-                                    FontSize="14"
-                                    TextColor="Black"
-                                    BackgroundColor="#F5F5F5"
-                                    AutoSize="TextChanges"
-                                    IsReadOnly="True" />
-                        </VerticalStackLayout>
+                        <Label x:Name="ConsultaLabel" FontSize="30" FontAttributes="Bold" TextColor="Purple" HorizontalOptions="Center" Grid.Column="0" />
+                        <Label x:Name="HoraConsultaFormatada" FontSize="25" FontAttributes="Bold" TextColor="Gray" Grid.Column="1" HorizontalOptions="Center" />
                     </Grid>
                 </Frame>
 
-                <!-- Botão de ação -->
-                <Button Text="Iniciar Consulta"
+                <!-- Informações do Paciente e Motivo da Consulta -->
+                <Grid ColumnSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Dados do Paciente -->
+                    <Frame Grid.Column="0"
+                           BorderColor="Black"
+                           BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="15">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" /> <!-- Coluna para a imagem -->
+                                <ColumnDefinition Width="*" />   <!-- Coluna para os dados -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Imagem do Paciente -->
+                            <Image Grid.Column="0"
+                                   Source="mano.png"
+                                   WidthRequest="150"
+                                   HeightRequest="150"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+                            <!-- Informações do Paciente -->
+                            <VerticalStackLayout Grid.Column="1" Spacing="10" VerticalOptions="Center">
+                                <Label Text="Paciente:"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       TextColor="Black" />
+                                <Label x:Name="NomePacienteLabel" FontSize="14" TextColor="Gray" />
+                                <Label x:Name="NascimentoPacienteLabel" FontSize="14" TextColor="Gray" />
+                                <Label x:Name="CpfPacienteLabel" FontSize="14" TextColor="Gray" />
+                                <Label x:Name="SexoPacienteLabel" FontSize="14" TextColor="Gray" />
+                            </VerticalStackLayout>
+
+                             <ImageButton
+                                   Grid.Column="2"
+                                   Background="#CFCFCF"
+                                   Source="envarq.png"
+                                   WidthRequest="74"
+                                   HeightRequest="74"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"
+                                    />
+                        </Grid>
+                    </Frame>
+
+                    <!-- Motivo da Consulta -->
+                    <Frame Grid.Column="1"
+                           BackgroundColor="White"
+                           BorderColor="Black"
+                           CornerRadius="10"
+                           Padding="15">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Motivo da Consulta:"
+                                   FontAttributes="Bold"
+                                   FontSize="16"
+                                   TextColor="Black" />
+                            <Editor Text="Nos últimos dias, venho sentindo uma dor persistente na região do abdômen, principalmente após as refeições. Além disso, tenho notado um desconforto constante, acompanhado de náuseas e uma sensação de inchaço."
+                                    FontSize="14"
+                                    TextColor="Black"
+                                    BackgroundColor="#F5F5F5"
+                                    AutoSize="Disabled"
+                                    HeightRequest="150"
+                                    IsReadOnly="True" />
+
+
+                                <!-- Botão de Ação -->
+                        <Button Text="Iniciar Consulta"
                         BackgroundColor="#00C851"
+                        BorderColor="Black"
                         TextColor="White"
-                        CornerRadius="10"
                         FontAttributes="Bold"
-                        HeightRequest="40"
+                        CornerRadius="10"
+                        HeightRequest="50"
                         HorizontalOptions="End" />
+                        </VerticalStackLayout>
+                        
+                        
+                    </Frame>
+                    
+                </Grid>
+
+            
             </VerticalStackLayout>
         </Frame>
+
+      
     </Grid>
 </ContentPage>

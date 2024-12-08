@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.PagamentoEscolha"
+             Title="PagamentoEscolha">
+    
+    <!-- Fundo com gradiente -->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1.7">
+            <GradientStop Color="#FFA234" Offset="0.00164" />
+            <GradientStop Color="#54027B" Offset="0.15" />
+            <GradientStop Color="White" Offset="0.328" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+
+        <Label Text="selecione o melhor metodo "
+       FontAttributes="Bold"
+       TextColor="White"
+       FontSize="23"
+       HorizontalOptions="Center"
+       Margin="0,70,0,0"/>
+
+        <Label Text="para você!"
+               FontAttributes="Bold"
+               TextColor="White"
+               FontSize="23"
+               HorizontalOptions="Center"
+               Margin="0,100,0,0"/>
+
+        <!-- Botão de voltar -->
+        <Button x:Name="BackButton"
+        BackgroundColor="#47FFFFFF"
+        CornerRadius="25"
+        WidthRequest="45"
+        HeightRequest="45"
+        ImageSource="black_icon.png"
+        HorizontalOptions="Start"
+        VerticalOptions="Start"
+        Margin="15,20,0,0" 
+        Clicked="OnBackButtonClicked"/>
+
+        <Frame HeightRequest="650"
+               Background="White"
+               BorderColor="White"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="End"
+               Padding="20" 
+               CornerRadius="30">
+
+            <VerticalStackLayout Spacing="20">
+
+                <Label Text="Metodos de pagamento"
+                       FontAttributes="Bold"
+                       TextColor="#242F40"
+                       FontSize="27"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center"
+ />
+
+                <Button ImageSource="pix.png"
+                        BackgroundColor="#d9d9d9"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="30"
+                        WidthRequest="325"
+                        HeightRequest="110"
+                        Clicked="OnPixButtonClicked"
+                        />
+
+                <Button ImageSource="credito.png"
+                        BackgroundColor="#d9d9d9"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="30"
+                        WidthRequest="325"
+                        HeightRequest="110"
+                        />
+
+                <Button ImageSource="debito.png"
+                        BackgroundColor="#d9d9d9"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="30"
+                        WidthRequest="325"
+                        HeightRequest="110"
+                        />
+
+                <Button ImageSource="boleto.png"
+                        BackgroundColor="#d9d9d9"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="30"
+                        WidthRequest="325"
+                        HeightRequest="110"
+                        />
+
+            </VerticalStackLayout>
+            
+        </Frame>
+        
+    </Grid> 
+
+</ContentPage>

@@ -1,6 +1,6 @@
 using SMT.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using System.Threading.Tasks;
 
 public class EspecialidadeService
 {
@@ -11,42 +11,20 @@ public class EspecialidadeService
         _context = context;
     }
 
-    // Método para adicionar uma especialidade
-    public void AdicionarEspecialidade(Especialidade especialidade)
+    // Método para buscar o id de uma especialidade pelo nome
+    public async Task<int?> BuscarIdPorNome(string nomeEspecialidade)
     {
-        _context.Especialidades.Add(especialidade);
-        _context.SaveChanges();
-    }
-
-    // Método para atualizar uma especialidade
-    public void AtualizarEspecialidade(Especialidade especialidade)
-    {
-        var especialidadeExistente = _context.Especialidades
-            .FirstOrDefault(e => e.Idespecialidade == especialidade.Idespecialidade); // Usando o ID da especialidade recebida
-
-        if (especialidadeExistente != null)
+        try
         {
-            especialidadeExistente.Nomeespec = especialidade.Nomeespec; // Atualizando o nome da especialidade
-            _context.SaveChanges();
+            var especialidade = await _context.Especialidades
+                .FirstOrDefaultAsync(e => e.Nomeespec == nomeEspecialidade);
+
+            return especialidade?.Idespecialidade;
         }
-    }
-
-    // Método para buscar uma especialidade
-    public Especialidade? BuscarEspecialidade(int id) // Alterando para retornar uma Especialidade?
-    {
-        return _context.Especialidades.FirstOrDefault(e => e.Idespecialidade == id);
-    }
-
-    // Método para deletar uma especialidade
-    public void DeletarEspecialidade(int id)
-    {
-        var especialidadeExistente = _context.Especialidades
-            .FirstOrDefault(e => e.Idespecialidade == id);
-
-        if (especialidadeExistente != null)
+        catch (Exception ex)
         {
-            _context.Especialidades.Remove(especialidadeExistente);
-            _context.SaveChanges();
+            // Lida com erro
+            throw new Exception($"Erro ao buscar o id da especialidade: {ex.Message}", ex);
         }
     }
 }

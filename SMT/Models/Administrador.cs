@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SMT.Models;
 
+[Table("administrador")]
 public partial class Administrador
 {
-    public int Idadministrador { get; set; }
+    [Key]
+    [Column("idadministrador")]
+    public int IdAdministrador { get; set; }
 
-    public int UnidadeIdunidade { get; set; }
+    [Column("unidade_idunidade")]
+    public int UnidadeIdUnidade { get; set; }
 
-    public string? Nomeadm { get; set; }
+    [Column("nomeadm")]
+    public string NomeAdm { get; set; } = null!;
 
-    public string? Sobrenomeadm { get; set; }
+    [Column("sobrenomeadm")]
+    public string SobrenomeAdm { get; set; } = null!;
 
-    public string? Senhaadm { get; set; }
-
-    public virtual Unidade UnidadeIdunidadeNavigation { get; set; } = null!;
+    [Column("senhaadm")]
+    public string SenhaAdm { get; set; } = null!;
 }

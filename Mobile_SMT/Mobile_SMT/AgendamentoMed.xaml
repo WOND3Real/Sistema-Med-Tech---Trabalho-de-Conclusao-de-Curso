@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.AgendamentoMed"
+             Title="AgendamentoMed"
+             BackgroundColor="Transparent">
+
+
+    <!-- Fundo com gradiente -->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1.7">
+            <GradientStop Color="#FFA234" Offset="0.00164" />
+            <GradientStop Color="#54027B" Offset="0.06" />
+            <GradientStop Color="White" Offset="0.328" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <!-- Grid principal -->
+    <Grid>
+
+        <!-- Botão de voltar -->
+        <Button x:Name="BackButton"
+                BackgroundColor="#47FFFFFF"
+                BorderColor="White"
+                CornerRadius="25"
+                WidthRequest="45"
+                HeightRequest="45"
+                ImageSource="black_icon.png"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Margin="15,20,0,0"
+                Clicked="OnBackButtonClicked" />
+        <!-- Evento de clique -->
+
+        <!-- Estrutura principal -->
+        <Frame HeightRequest="720"
+               BackgroundColor="White"
+               BorderColor="White"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="End"
+               Padding="20"
+               CornerRadius="30">
+
+            <VerticalStackLayout Spacing="10">
+
+
+                <HorizontalStackLayout Spacing="10">
+
+                    <!-- Imagem do médico -->
+                    <Image Source="ninguen.png" 
+                           HorizontalOptions="Start" 
+                           VerticalOptions="Center" 
+                           WidthRequest="110"
+                           HeightRequest="110" />
+
+                    <!-- Informações do médico -->
+                    <VerticalStackLayout VerticalOptions="Center" Spacing="10">
+                        
+                            <Frame BackgroundColor="#d9d9d9"
+                                Padding="10"
+                                CornerRadius="25"
+                                BorderColor="White"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Grid>
+                                    <HorizontalStackLayout>
+                                        <Label Text="Dr." 
+                                            FontSize="20"
+                                            Margin="0,0,2,0"
+                                            TextColor="#242F40"
+                                            FontAttributes="Bold" />
+
+                                        <Label Text="{Binding NomeMedico}" 
+                                            FontSize="20"
+                                            Margin="0,0,5,0"
+                                            TextColor="#242F40"
+                                            FontAttributes="Bold" />
+
+                                        <Label Text="{Binding SobrenomeMedico}" 
+                                            FontSize="20"
+                                            Margin="0,0,5,0"
+                                            TextColor="#242F40"
+                                            FontAttributes="Bold" />
+                                    </HorizontalStackLayout>
+
+                                    <Label Text="{Binding EspecialidadeNome}"
+                                        FontSize="17"
+                                        FontAttributes="Bold"
+                                        TextColor="#435167" 
+                                        Margin="0,20,0,0"/>
+                                </Grid>
+                            </Frame>
+                        <Border BackgroundColor="#d9d9d9"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 40" 
+                                HeightRequest="25"
+                                WidthRequest="125"
+                                HorizontalOptions="Start"
+                                >
+
+                            <Label Text="⭐⭐⭐⭐⭐ 5.0"
+                                   FontSize="15"
+                                   TextColor="#FFA234"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Start" 
+                                   HorizontalOptions="Center" />
+                        </Border>
+
+                        <Border BackgroundColor="#d9d9d9"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 40" 
+                                HeightRequest="25"
+                                WidthRequest="200"
+                                
+                                HorizontalOptions="Start">
+
+                            <Label Text="Seg-Sab / 9:00AM - 5:00PM"
+                                   FontSize="15"
+                                   TextColor="#435167"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Start" 
+                                   HorizontalOptions="Center" />
+
+                        </Border>
+                    </VerticalStackLayout>
+
+                </HorizontalStackLayout>
+
+                <Grid>
+                    <Frame BorderColor="White" 
+                                CornerRadius="15"
+                                BackgroundColor="#d9d9d9" 
+                                Padding="10"
+                                >
+                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                   TextColor="#242F40"
+                                   FontSize="15"
+                                   FontAttributes="Bold" 
+                                   LineBreakMode="WordWrap" />
+                    </Frame>
+                </Grid>
+
+                <BoxView Color="#242F40"
+                         HeightRequest="0.5" 
+                         WidthRequest="250"
+                         HorizontalOptions="Center" />
+
+                <Label Text="Motivo da consulta"
+                           TextColor="#FFA234"
+                           FontSize="Title"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+
+                <Frame BackgroundColor="#464F5E"
+                       BorderColor="#464F5E"
+                       CornerRadius="10"
+                       Opacity="0.5"
+                       WidthRequest="325"
+                       HeightRequest="150"
+                       Margin="10">
+                    <Entry Placeholder="O que você está sentindo ou precisa?"
+                           PlaceholderColor="#ffffff"
+                           FontSize="14" 
+                           TextColor="#ffffff"/>
+                </Frame>
+
+                <Button Text="Agendar Consulta"  
+                        BackgroundColor="#8A2BE2" 
+                        TextColor="White" 
+                        WidthRequest="340"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="10" 
+                        FontSize="25"
+                        FontAttributes="Bold" 
+                        Margin="0,15,0,15"
+                        Clicked="OnAgendarButtonClicked"/>
+
+
+            </VerticalStackLayout>
+
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

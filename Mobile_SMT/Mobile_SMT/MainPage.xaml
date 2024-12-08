@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_SMT.MainPage"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#FFA234" Offset="0.0" />
+            <GradientStop Color="#54027B" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid Padding="20">
+        <VerticalStackLayout Spacing="0">
+            <Image Source="logo.png" 
+                   HeightRequest="160" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,40"/>
+            <!-- email -->
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                     BackgroundColor="#47FFFFFF"  
+                    StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,30">
+                <Entry Placeholder="Digite seu Email" 
+                       x:Name="UsernameEntry" 
+                       TextColor="#FFFFFF" 
+                       BackgroundColor="Transparent" 
+                       WidthRequest="315" 
+                       HeightRequest="60"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold" 
+                       PlaceholderColor="White" />
+            </Border>
+
+            <!-- senha -->
+            <Border Stroke="#FFFFFF" 
+                    StrokeThickness="1" 
+                    BackgroundColor="#47FFFFFF"  
+                    StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="Digite sua senha" 
+                       IsPassword="True" 
+                       x:Name="PasswordEntry" 
+                       TextColor="#FFFFFF" 
+                       BackgroundColor="Transparent" 
+                       WidthRequest="315" 
+                       HeightRequest="60"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold" 
+                       PlaceholderColor="White"/>
+            </Border>
+
+            <Label Text="Esqueceu a senha?" 
+                   FontSize="17" 
+                   HorizontalOptions="Center" 
+                   TextColor="#996DD2E7" 
+                   Margin="0,15,0,15"/>
+
+            <Button Text="Login" Clicked="OnLoginClicked"  BackgroundColor="#54AAE8" 
+                TextColor="White" 
+                WidthRequest="340"
+                HeightRequest="69"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                CornerRadius="10" 
+                FontSize="30"
+                FontAttributes="Bold" 
+                Margin="0,15,0,15" />
+
+           
+            <Label Text="Ou continue com" 
+               FontSize="17" 
+               HorizontalOptions="Center" 
+               TextColor="White"/>
+            
+            
+           
+
+            <Image Source="continuar_com.png"
+                   HeightRequest="125" 
+                    HorizontalOptions="Center" 
+                    Margin="0,0,0,10"/>
+
+
+
+            <Label Text="Ainda não tem cadastro?"
+                   HorizontalOptions="Center" 
+                   FontSize="20" 
+                   TextColor="White" 
+                   FontAttributes="Bold"/>
+
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Registrar!"
+                   TextColor="LightBlue"
+                   FontAttributes="Bold" 
+                   GestureRecognizers="{TapGestureRecognizer Tapped='OnRegisterTapped'}"
+                   FontSize="20"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

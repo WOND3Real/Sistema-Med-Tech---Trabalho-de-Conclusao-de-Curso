@@ -12,53 +12,59 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SmtMAUI
-build_property.ProjectDir = C:\Users\Ednei\Downloads\projeto fds\SmtMAUI\
+build_property.ProjectDir = C:\Users\Helton\Documents\VScodeProjs\Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso\SmtMAUI\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/App.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/AppShell.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/CadastroContribuintes.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/CadastroContribuintes.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.CadastroContribuintes.xaml
 build_metadata.AdditionalFiles.TargetPath = CadastroContribuintes.xaml
 build_metadata.AdditionalFiles.RelativePath = CadastroContribuintes.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/ListaConsulta.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/ListaConsulta.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.ListaConsulta.xaml
 build_metadata.AdditionalFiles.TargetPath = ListaConsulta.xaml
 build_metadata.AdditionalFiles.RelativePath = ListaConsulta.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/Login.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/Login.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Login.xaml
 build_metadata.AdditionalFiles.TargetPath = Login.xaml
 build_metadata.AdditionalFiles.RelativePath = Login.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/PainelADM.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/PainelADM.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.PainelADM.xaml
 build_metadata.AdditionalFiles.TargetPath = PainelADM.xaml
 build_metadata.AdditionalFiles.RelativePath = PainelADM.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/PainelMedico.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/PainelMedico.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.PainelMedico.xaml
 build_metadata.AdditionalFiles.TargetPath = PainelMedico.xaml
 build_metadata.AdditionalFiles.RelativePath = PainelMedico.xaml
 
-[C:/Users/Ednei/Downloads/projeto fds/SmtMAUI/Resources/View/Header.xaml]
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/Perfil.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Perfil.xaml
+build_metadata.AdditionalFiles.TargetPath = Perfil.xaml
+build_metadata.AdditionalFiles.RelativePath = Perfil.xaml
+
+[C:/Users/Helton/Documents/VScodeProjs/Sistema-Med-Tech---Trabalho-de-Conclusao-de-Curso/SmtMAUI/Resources/View/Header.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = SmtMAUI.Resources.View.Header.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\View\Header.xaml
